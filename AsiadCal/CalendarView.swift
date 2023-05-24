@@ -36,19 +36,36 @@ extension AnyTransition {
     }
 }
 
+
 struct CalendarView: View {
     
     @State var selectedDate: Date = Date()
     @State var showDetail: Bool = false
-    @State var showEvent: Bool = false
+    @State var showEvent: Bool = true
+    
     @State var eventPos: CGSize = CGSize(width: 0, height: 0)
     let enterEffect = CGAffineTransform(translationX: 0, y: 100)
     let quitEffect = CGAffineTransform(translationX: 0, y: 800)
+    
+    var tap: some Gesture {
+        TapGesture(count: 1)
+            .onEnded {
+                withAnimation{
+                    if(showDetail) {
+                        showEvent = false
+                    }
+                }
+            }
+    }
+    
     var body: some View {
         ZStack{
             Button {
                 withAnimation {
                     showDetail.toggle()
+                    if(showDetail) {
+                        showEvent = false
+                    }
                 }
             } label: {
                 Label("Graph", systemImage: "chevron.right.circle")
@@ -65,28 +82,52 @@ struct CalendarView: View {
                         .foregroundColor(.white)
                         .frame(height: 700)
                         .offset(x: 0,y: 80)
+                        
                     CalendarViewRepresentable(selectedDate: $selectedDate, showEvent: $showEvent, eventPos: $eventPos)
                         .padding(.bottom)
                         .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
                         .frame(width: 300, height: 600)
                         .offset(x:0, y:100)
+                    
                 }
                 .transition(.move(edge: .bottom))
             }
             if(showDetail && showEvent) {
-                RoundedRectangle(cornerRadius: 60)
-                    .frame(height: 300)
-                    .offset(x: 0, y: 300)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-                    .foregroundColor(.blue)
+                ZStack{
+                    RoundedRectangle(cornerRadius: 60)
+                        .foregroundColor(.black)
+                        .frame(height: 700)
+                        .offset(x: 0,y: 80)
+                        .opacity(0.1)
+                        .gesture(tap)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 60)
+                            .frame(height: 300)
+                            .foregroundColor(.purple)
+                            .offset(x: 0, y: 300)
+                        VStack{
+                            Text("test here 0")
+                                .font(.system(size: 30))
+                            Text("test here 1")
+                                .font(.system(size: 30))
+                            Text("test here 2")
+                                .font(.system(size: 30))
+                        }
+                        .offset(y: 250)
+                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                }
+                
+                
                     
             }
             
         }
         
     }
-    
 }
+
+
 
 struct CalendarViewRepresentable: UIViewRepresentable {
     typealias UIViewType = FSCalendar
@@ -95,6 +136,8 @@ struct CalendarViewRepresentable: UIViewRepresentable {
     @Binding var selectedDate: Date
     @Binding var showEvent: Bool
     @Binding var eventPos: CGSize
+    
+    
     func makeUIView(context: Context) -> FSCalendar {
         calendar.delegate = context.coordinator
         calendar.dataSource = context.coordinator
@@ -180,12 +223,8 @@ struct CalendarViewRepresentable: UIViewRepresentable {
             parent.selectedDate = date
             
             withAnimation {
-                parent.showEvent.toggle()
+                parent.showEvent = true
             }
-            let pos = parent.calendar.cell(for: date, at: .notFound)?.frame.size ?? CGSize(width: 0, height: 0)
-            print(pos)
-            parent.eventPos = pos
-            print(date)
         }
     
 
@@ -240,4 +279,5 @@ struct CalendarView_Previews: PreviewProvider {
             CalendarView()
         }
     }
+
 }
