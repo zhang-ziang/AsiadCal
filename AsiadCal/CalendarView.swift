@@ -60,21 +60,6 @@ struct CalendarView: View {
     
     var body: some View {
         ZStack{
-            Button {
-                withAnimation {
-                    showDetail.toggle()
-                    if(showDetail) {
-                        showEvent = false
-                    }
-                }
-            } label: {
-                Label("Graph", systemImage: "chevron.right.circle")
-                    .labelStyle(.iconOnly)
-                    .imageScale(.large)
-                    .rotationEffect(.degrees(showDetail ? 90 : -90))
-                    .scaleEffect(2.0)
-                    .padding()
-            }.offset(x:0,y: -200)
             if(showDetail) {
                 ZStack{
                     RoundedRectangle(cornerRadius: 60)
@@ -98,13 +83,14 @@ struct CalendarView: View {
                         .foregroundColor(.black)
                         .frame(height: 700)
                         .offset(x: 0,y: 80)
-                        .opacity(0.1)
+                        .opacity(0.001)
                         .gesture(tap)
                     ZStack{
-                        RoundedRectangle(cornerRadius: 60)
-                            .frame(height: 300)
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 350, height: 200)
                             .foregroundColor(.purple)
                             .offset(x: 0, y: 300)
+                            .shadow(radius: 60)
                         VStack{
                             Text("test here 0")
                                 .font(.system(size: 30))
@@ -117,10 +103,22 @@ struct CalendarView: View {
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
-                
-                
-                    
             }
+            Button {
+                withAnimation {
+                    showDetail.toggle()
+                    if(showDetail) {
+                        showEvent = false
+                    }
+                }
+            } label: {
+                Label("Graph", systemImage: "chevron.right.circle")
+                    .labelStyle(.iconOnly)
+                    .imageScale(.large)
+                    .rotationEffect(.degrees(showDetail ? 90 : -90))
+                    .scaleEffect(2.0)
+                    .padding()
+            }.offset(x:0,y: -200)
             
         }
         
