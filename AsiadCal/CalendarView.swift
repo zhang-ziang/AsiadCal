@@ -73,11 +73,12 @@ struct CalendarView: View {
                 ZStack{
                     
                     RoundedRectangle(cornerRadius: 60)
-                        .foregroundColor(.black)
+                        .foregroundColor(.white)
                         .frame(width: 394, height: 800)
                         .offset(x: 0,y: 180)
                         .offset(x:0, y:showEvent ? -100 : 0)
-                        .opacity(0.001)
+//                        .opacity(0.001)
+                        .blendMode(.multiply)
                         .gesture(tap)
                     ZStack{
                         RoundedRectangle(cornerRadius: 20)
