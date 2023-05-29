@@ -22,8 +22,8 @@ extension AnyTransition {
 struct CalendarView: View {
     
     @State var selectedDate: Date = Date()
-    @State var showDetail: Bool = false
-    @State var showEvent: Bool = true
+    @Binding var showDetail: Bool
+    @State var showEvent: Bool = false
     @State var isAnimated: Bool = true
     @State var eventPos: CGSize = CGSize(width: 0, height: 0)
     @State var eventTexts: [AsiadEvent] = []
@@ -38,18 +38,42 @@ struct CalendarView: View {
                 }
             }
     }
+    var doubleTap: some Gesture {
+        TapGesture(count: 2)
+            .onEnded {
+                withAnimation{
+                    showDetail = false
+                    showEvent = false
+                }
+            }
+    }
+    
+    var exitTap: some Gesture {
+        TapGesture(count: 1)
+            .onEnded {
+                withAnimation{
+                    showDetail = false
+                    showEvent = false
+                }
+            }
+    }
     
     var body: some View {
         ZStack{
+            Rectangle()
+                .foregroundColor(.white)
+                .blendMode(.multiply)
+                .gesture(exitTap)
             if(showDetail) {
                 ZStack{
                     AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
                         .playbackMode(.bounce)
+                        .frame(width: 394, height: 800)
                         .clipShape(
                             RoundedRectangle(cornerRadius: 60)
 //                                .strokeBorder(lineWidth: 10)
                         )
-                        .frame(width: 394, height: 800)
+                        
                         .shadow(radius: 10)
                         .offset(x: 0,y: 180)
                     RoundedRectangle(cornerRadius: 50)
@@ -84,6 +108,7 @@ struct CalendarView: View {
                         .offset(x:0, y:showEvent ? 80 : 180)
                         .blendMode(.multiply)
                         .gesture(tap)
+                        .gesture(doubleTap)
                     ZStack(alignment: .leading){
 //                        RoundedRectangle(cornerRadius: 20)
 //                            .frame(width: 300, height: 220)
@@ -115,13 +140,7 @@ struct CalendarView: View {
                                                 )
                                             )
                                             .font(.system(size: 20))
-
-                                            
                                         }
-                                        
-    //                                        .multilineTextAlignment(.leading)
-//                                            .frame(width: 200, height: 30)
-//                                            .offset(x: 0)
                                     }
                                 }
                             }
@@ -136,22 +155,23 @@ struct CalendarView: View {
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .zIndex(5.0)
             }
-            Button {
-                withAnimation {
-                    showDetail.toggle()
-                    if(showDetail) {
-                        showEvent = false
-                    }
-                }
-            } label: {
-                Label("Graph", systemImage: "chevron.right.circle")
-                    .labelStyle(.iconOnly)
-                    .imageScale(.large)
-                    .rotationEffect(.degrees(showDetail ? 90 : -90))
-                    .scaleEffect(2.0)
-                    .padding()
-            }.offset(x:0,y: -350)
-                .zIndex(6.0)
+            // used for debug
+//            Button {
+//                withAnimation {
+//                    showDetail.toggle()
+//                    if(showDetail) {
+//                        showEvent = false
+//                    }
+//                }
+//            } label: {
+//                Label("Graph", systemImage: "chevron.right.circle")
+//                    .labelStyle(.iconOnly)
+//                    .imageScale(.large)
+//                    .rotationEffect(.degrees(showDetail ? 90 : -90))
+//                    .scaleEffect(2.0)
+//                    .padding()
+//            }.offset(x:0,y: -350)
+//                .zIndex(6.0)
             
         }
         
@@ -189,7 +209,6 @@ struct CalendarViewRepresentable: UIViewRepresentable {
                                                 weight: .black)
         calendar.appearance.headerTitleColor = .darkGray
         calendar.appearance.borderRadius = 1
-        //calendar.appearance.headerDateFormat = "MMMM"
         calendar.scrollDirection = .vertical
         calendar.scope = .month
         calendar.clipsToBounds = false
@@ -214,7 +233,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
         
         init(_ parent: CalendarViewRepresentable) {
             self.parent = parent
-//            self.AsiadEvents = []
+            AsiadEvents = []
             // 在此load赛事日程
             AsiadEvents.append(
                 AsiadEvent(EventName: "英雄联盟表演赛", EventDate: Date(), EventType: .ESport)
@@ -316,7 +335,7 @@ func isWeekend(date: Date) -> Bool {
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            CalendarView()
+            CalendarView(showDetail: .constant(true))
         }
     }
 

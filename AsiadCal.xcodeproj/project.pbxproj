@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		019A5CE82A24C32900F2F654 /* NvgBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A5CE72A24C32900F2F654 /* NvgBar.swift */; };
 		01E14A6D2A24830A0036F19D /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A6C2A24830A0036F19D /* giphy.gif */; };
 		01E14A732A2498EE0036F19D /* events in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A722A2498EE0036F19D /* events */; };
 		DB0905BEB43F6D9EFFC6F9E4 /* Pods_AsiadCal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A47C53BFD444C1FD5B1D06 /* Pods_AsiadCal.framework */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		019A5CE72A24C32900F2F654 /* NvgBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NvgBar.swift; sourceTree = "<group>"; };
 		01E14A6C2A24830A0036F19D /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
 		01E14A722A2498EE0036F19D /* events */ = {isa = PBXFileReference; lastKnownFileType = text; path = events; sourceTree = "<group>"; };
 		3460C89AFE68EAF7FF18B341 /* Pods-AsiadCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsiadCal.debug.xcconfig"; path = "Target Support Files/Pods-AsiadCal/Pods-AsiadCal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				F29FFCE42A1CD74700F74FF7 /* ContentView.swift */,
 				F29FFD0C2A1CD84D00F74FF7 /* CalendarList.swift */,
 				F29FFD0E2A1CD86F00F74FF7 /* CalendarView.swift */,
+				019A5CE72A24C32900F2F654 /* NvgBar.swift */,
 				F2DD732C2A244E10001712C1 /* ProjView.swift */,
 				F2DD732E2A244E5D001712C1 /* CircleView.swift */,
 				F2DD73302A244ED1001712C1 /* ProjData.swift */,
@@ -435,6 +438,7 @@
 				F29FFCE32A1CD74700F74FF7 /* AsiadCalApp.swift in Sources */,
 				F29FFD0F2A1CD86F00F74FF7 /* CalendarView.swift in Sources */,
 				F2DD732D2A244E10001712C1 /* ProjView.swift in Sources */,
+				019A5CE82A24C32900F2F654 /* NvgBar.swift in Sources */,
 				F2DD73312A244ED1001712C1 /* ProjData.swift in Sources */,
 				F2DD73352A24521D001712C1 /* GlobalData.swift in Sources */,
 				F29FFD0D2A1CD84D00F74FF7 /* CalendarList.swift in Sources */,

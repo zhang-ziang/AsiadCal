@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var calendarTapped   : Bool = false
+    @State var competitionTapped: Bool = false
+    @State var userTapped       : Bool = false
+    @State var showNvgbar       : Bool = true
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            NvgBar(showNvgbar: $showNvgbar, calendarTapped: $calendarTapped, competitionTapped: $competitionTapped, userTapped: $userTapped)
+                .zIndex(10.0)
+            CalendarView(showDetail: $calendarTapped)
+                .zIndex(0.0)
         }
         .padding()
     }
@@ -21,6 +25,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ZStack{
+            ContentView()
+        }
     }
 }
