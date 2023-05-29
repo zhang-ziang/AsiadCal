@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 enum SportType {
     case Athletics
@@ -20,9 +20,25 @@ enum SportType {
     case DragonBoat
     case Swimming
     case ESport
+    case None
 }
 
-struct AsiadEvent {
+var Event2Color : [SportType : UIColor] = [
+    .Athletics  : .red ,
+    .Basketball : .yellow ,
+    .CyclingRoad: .brown ,
+    .Football   : .orange ,
+    .CyclingMTB : .blue ,
+    .Boxing     : .red ,
+    .Fencing    : .red ,
+    .CanoeSlalom: .red ,
+    .DragonBoat : .red ,
+    .Swimming   : .red ,
+    .ESport     : .purple
+]
+
+struct AsiadEvent: Identifiable {
+    var id = UUID()
     var EventName : String
     var EventDate : Date
     var EventType : SportType

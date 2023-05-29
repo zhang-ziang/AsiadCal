@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		01E14A6D2A24830A0036F19D /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A6C2A24830A0036F19D /* giphy.gif */; };
+		01E14A732A2498EE0036F19D /* events in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A722A2498EE0036F19D /* events */; };
 		DB0905BEB43F6D9EFFC6F9E4 /* Pods_AsiadCal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A47C53BFD444C1FD5B1D06 /* Pods_AsiadCal.framework */; };
 		F29FFCE32A1CD74700F74FF7 /* AsiadCalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */; };
 		F29FFCE52A1CD74700F74FF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCE42A1CD74700F74FF7 /* ContentView.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		01E14A6C2A24830A0036F19D /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
+		01E14A722A2498EE0036F19D /* events */ = {isa = PBXFileReference; lastKnownFileType = text; path = events; sourceTree = "<group>"; };
 		3460C89AFE68EAF7FF18B341 /* Pods-AsiadCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsiadCal.debug.xcconfig"; path = "Target Support Files/Pods-AsiadCal/Pods-AsiadCal.debug.xcconfig"; sourceTree = "<group>"; };
 		74A47C53BFD444C1FD5B1D06 /* Pods_AsiadCal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsiadCal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F9BDAB82CF89C04988B940 /* Pods-AsiadCal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsiadCal.release.xcconfig"; path = "Target Support Files/Pods-AsiadCal/Pods-AsiadCal.release.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +128,14 @@
 			path = backGround;
 			sourceTree = "<group>";
 		};
+		01E14A6E2A24974C0036F19D /* AsiadEvents */ = {
+			isa = PBXGroup;
+			children = (
+				01E14A722A2498EE0036F19D /* events */,
+			);
+			path = AsiadEvents;
+			sourceTree = "<group>";
+		};
 		1A4B2A2B74AE68B2675E06E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +178,7 @@
 		F29FFCE12A1CD74700F74FF7 /* AsiadCal */ = {
 			isa = PBXGroup;
 			children = (
+				01E14A6E2A24974C0036F19D /* AsiadEvents */,
 				01E14A6B2A24827B0036F19D /* backGround */,
 				F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */,
 				F29FFCE42A1CD74700F74FF7 /* ContentView.swift */,
@@ -344,6 +355,7 @@
 				F2DD731F2A244DE2001712C1 /* RugbySevens.gif in Resources */,
 				F2DD73242A244DE2001712C1 /* Football.gif in Resources */,
 				F2DD73202A244DE2001712C1 /* Athletics.gif in Resources */,
+				01E14A732A2498EE0036F19D /* events in Resources */,
 				F2DD73222A244DE2001712C1 /* Boxing.gif in Resources */,
 				F2DD73212A244DE2001712C1 /* Swimming.gif in Resources */,
 				F2DD732A2A244DE2001712C1 /* Trampoline.gif in Resources */,

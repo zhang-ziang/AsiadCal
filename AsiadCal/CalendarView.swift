@@ -26,8 +26,7 @@ struct CalendarView: View {
     @State var showEvent: Bool = true
     @State var isAnimated: Bool = true
     @State var eventPos: CGSize = CGSize(width: 0, height: 0)
-    let enterEffect = CGAffineTransform(translationX: 0, y: 100)
-    let quitEffect = CGAffineTransform(translationX: 0, y: 800)
+    @State var eventTexts: [AsiadEvent] = []
     
     var tap: some Gesture {
         TapGesture(count: 1)
@@ -45,12 +44,13 @@ struct CalendarView: View {
             if(showDetail) {
                 ZStack{
                     AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
-                        .playbackMode(.normal)
+                        .playbackMode(.bounce)
                         .clipShape(
                             RoundedRectangle(cornerRadius: 60)
 //                                .strokeBorder(lineWidth: 10)
                         )
                         .frame(width: 394, height: 800)
+                        .shadow(radius: 10)
                         .offset(x: 0,y: 180)
                     RoundedRectangle(cornerRadius: 50)
 //                        .strokeBorder(.purple, lineWidth: 10)
@@ -59,13 +59,19 @@ struct CalendarView: View {
                         .offset(x: 0,y: 180)
                     
                         
-                    CalendarViewRepresentable(selectedDate: $selectedDate, showEvent: $showEvent, eventPos: $eventPos)
+                    CalendarViewRepresentable(
+                        selectedDate: $selectedDate,
+                        showEvent: $showEvent,
+                        eventPos: $eventPos,
+                        eventTexts: $eventTexts
+                    )
                         .padding(.bottom)
                         .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
                         .frame(width: 300, height: 600)
                         .offset(x:0, y:70)
                     
                 }
+                .zIndex(4.0)
                 .offset(x:0, y:showEvent ? -100 : 0)
                 .transition(.move(edge: .bottom))
             }
@@ -75,26 +81,60 @@ struct CalendarView: View {
                     RoundedRectangle(cornerRadius: 60)
                         .foregroundColor(.white)
                         .frame(width: 394, height: 800)
-                        .offset(x: 0,y: 180)
-                        .offset(x:0, y:showEvent ? -100 : 0)
-//                        .opacity(0.001)
+                        .offset(x:0, y:showEvent ? 80 : 180)
                         .blendMode(.multiply)
                         .gesture(tap)
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 20)
-                            .frame(width: 350, height: 200)
-                            .foregroundColor(.white)
-                            .offset(x: 0, y: 300)
-                            .shadow(radius: 60)
-                        VStack{
-                            Text("dayTime MM DD HH")
-                                .font(.system(size: 20))
-                                .multilineTextAlignment(.leading)
+                    ZStack(alignment: .leading){
+//                        RoundedRectangle(cornerRadius: 20)
+//                            .frame(width: 300, height: 220)
+//                            .foregroundColor(.white)
+////                                .offset(x: 0, y: 280)
+//                            .shadow(radius: 10)
+                        
+                        List(){
+                            VStack{
+                                if eventTexts.isEmpty {
+                                    Text("Empty~")
+                                        .font(.system(size: 15))
+                                        .multilineTextAlignment(.center)
+                                        
+                                }
+                                else {
+                                    ForEach(eventTexts) { event in
+                                        HStack{
+                                            Text(event.EventName)
+                                            .font(.system(size: 20))
+                                            Spacer()
+                                            Divider()
+                                                .frame(minWidth: 5)
+                                                .overlay(Color(Event2Color[event.EventType]!))
+                                            Text(
+                                                event.EventDate.formatted(
+                                                    date: .omitted,
+                                                    time: .shortened
+                                                )
+                                            )
+                                            .font(.system(size: 20))
+
+                                            
+                                        }
+                                        
+    //                                        .multilineTextAlignment(.leading)
+//                                            .frame(width: 200, height: 30)
+//                                            .offset(x: 0)
+                                    }
+                                }
+                            }
                         }
-                        .offset(y: 290)
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
+                        .navigationTitle("Events")
+                        .frame(width: 300, height: 220)
+                        .cornerRadius(20)
+                        .shadow(radius: 5)
                     }
                 }
+                .offset(y: 280)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(5.0)
             }
             Button {
                 withAnimation {
@@ -111,7 +151,7 @@ struct CalendarView: View {
                     .scaleEffect(2.0)
                     .padding()
             }.offset(x:0,y: -350)
-            
+                .zIndex(6.0)
             
         }
         
@@ -127,7 +167,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
     @Binding var selectedDate: Date
     @Binding var showEvent: Bool
     @Binding var eventPos: CGSize
-    
+    @Binding var eventTexts: [AsiadEvent]
     
     func makeUIView(context: Context) -> FSCalendar {
         calendar.delegate = context.coordinator
@@ -138,7 +178,8 @@ struct CalendarViewRepresentable: UIViewRepresentable {
         calendar.appearance.titleTodayColor = .black
         calendar.appearance.selectionColor = .orange
         calendar.appearance.eventDefaultColor = .gray
-        calendar.appearance.eventSelectionColor = .orange
+//        calendar.appearance.eventSelectionColor = .orange
+//        calendar.appearance.eventDotDiameter = 5.0
         calendar.appearance.titleTodayColor = .white
         calendar.appearance.titleFont = .boldSystemFont(ofSize: 24)
 //        calendar.appearance.titleWeekendColor = .systemOrange
@@ -152,8 +193,6 @@ struct CalendarViewRepresentable: UIViewRepresentable {
         calendar.scrollDirection = .vertical
         calendar.scope = .month
         calendar.clipsToBounds = false
-        
-
 
         return calendar
     }
@@ -171,29 +210,17 @@ struct CalendarViewRepresentable: UIViewRepresentable {
 
 //        var AsiadEvents : [AsiadEvent]
         
-        var Event2Color : [SportType : UIColor] = [
-            .Athletics  : .red ,
-            .Basketball : .yellow ,
-            .CyclingRoad: .brown ,
-            .Football   : .orange ,
-            .CyclingMTB : .blue ,
-            .Boxing     : .red ,
-            .Fencing    : .red ,
-            .CanoeSlalom: .red ,
-            .DragonBoat : .red ,
-            .Swimming   : .red ,
-            .ESport     : .purple
-        ]
+        
         
         init(_ parent: CalendarViewRepresentable) {
             self.parent = parent
 //            self.AsiadEvents = []
             // 在此load赛事日程
             AsiadEvents.append(
-                AsiadEvent(EventName: "英雄联盟表演赛-中国vs韩国", EventDate: Date(), EventType: .ESport)
+                AsiadEvent(EventName: "英雄联盟表演赛", EventDate: Date(), EventType: .ESport)
             )
             AsiadEvents.append(
-                AsiadEvent(EventName: "足球赛-中国vs越南", EventDate: Date(), EventType: .Football)
+                AsiadEvent(EventName: "足球预选赛", EventDate: Date(), EventType: .Football)
             )
         }
         
@@ -207,12 +234,34 @@ struct CalendarViewRepresentable: UIViewRepresentable {
             }
             return EventColors
          }
+        
+        func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventSelectionColorsFor date: Date) -> [UIColor]? {
+            var EventColors : [UIColor] = []
+            AsiadEvents.forEach { event in
+                if event.EventDate.formatted(date: .complete, time: .omitted)
+                    == date.formatted(date: .complete, time: .omitted){
+                    EventColors.append(Event2Color[event.EventType]!)
+                }
+            }
+            return EventColors
+         }
+        
+        func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+            let eventScaleFactor: CGFloat = 1.5
+            cell.eventIndicator.transform = CGAffineTransform(scaleX: eventScaleFactor, y: eventScaleFactor)
+        }
 
         func calendar(_ calendar: FSCalendar,
                       didSelect date: Date,
                       at monthPosition: FSCalendarMonthPosition) {
             parent.selectedDate = date
-            
+            parent.eventTexts = []
+            AsiadEvents.forEach { event in
+                if event.EventDate.formatted(date: .complete, time: .omitted)
+                    == date.formatted(date: .complete, time: .omitted){
+                    parent.eventTexts.append(event)
+                }
+            }
             withAnimation {
                 parent.showEvent = true
             }
@@ -244,13 +293,13 @@ struct CalendarViewRepresentable: UIViewRepresentable {
             return true
         }
 
-        func maximumDate(for calendar: FSCalendar) -> Date {
-            Date.now.addingTimeInterval(86400 * 30)
-        }
-
-        func minimumDate(for calendar: FSCalendar) -> Date {
-            Date.now.addingTimeInterval(-86400 * 30)
-        }
+//        func maximumDate(for calendar: FSCalendar) -> Date {
+//            Date.now.addingTimeInterval(86400 * 30)
+//        }
+//
+//        func minimumDate(for calendar: FSCalendar) -> Date {
+//            Date.now.addingTimeInterval(-86400 * 30)
+//        }
     }
 }
 
