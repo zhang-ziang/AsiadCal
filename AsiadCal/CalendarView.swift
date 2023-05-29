@@ -93,10 +93,12 @@ struct CalendarView: View {
                         .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
                         .frame(width: 300, height: 600)
                         .offset(x:0, y:70)
+                        
                     
                 }
                 .zIndex(4.0)
                 .offset(x:0, y:showEvent ? -100 : 0)
+                .gesture(doubleTap)
                 .transition(.move(edge: .bottom))
             }
             if(showDetail && showEvent) {
@@ -150,6 +152,7 @@ struct CalendarView: View {
                         .frame(width: 300, height: 220)
                         .cornerRadius(20)
                         .shadow(radius: 5)
+                        .gesture(doubleTap)
                     }
                 }
                 .offset(y: 280)
