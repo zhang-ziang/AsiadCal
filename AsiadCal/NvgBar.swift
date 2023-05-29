@@ -85,7 +85,7 @@ struct NvgBar: View {
                         Spacer()
                         Button {
                             withAnimation{
-                                competitionTapped = true
+//                                competitionTapped = true
 //                                showText.toggle()
 //                                showNvgbar = false
                             }
@@ -107,7 +107,7 @@ struct NvgBar: View {
                         Spacer()
                         Button {
                             withAnimation{
-                                userTapped = true
+//                                userTapped = true
 //                                showText.toggle()
 //                                showNvgbar = false
                             }
