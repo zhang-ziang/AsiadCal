@@ -105,10 +105,11 @@ struct CalendarView: View {
                     RoundedRectangle(cornerRadius: 60)
                         .foregroundColor(.white)
                         .frame(width: 394, height: 800)
-                        .offset(x:0, y:showEvent ? 80 : 180)
+                        .offset(x:0, y:showEvent ? -200 : 0)
                         .blendMode(.multiply)
-                        .gesture(tap)
                         .gesture(doubleTap)
+                        .gesture(tap)
+                        
                     ZStack(alignment: .leading){
 //                        RoundedRectangle(cornerRadius: 20)
 //                            .frame(width: 300, height: 220)
