@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct MatchCapsuleView: View {
+    @Binding var showInsert: Bool
 //    var matchTitle: String
     var matchTime: String
     var matchLocation: String
     var matchDetail: String
+    @State private var offset = CGSize.zero
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 10)
@@ -41,11 +43,29 @@ struct MatchCapsuleView: View {
 
             }
         }
+        .onDrag{
+            withAnimation{
+                showInsert = true
+            }
+            return NSItemProvider(item: nil, typeIdentifier: MatchCapsuleTypeIdentifier)
+        }
+//        .gesture(
+//            DragGesture()
+//                .onChanged { gesture in
+//                    self.offset = gesture.translation
+//                }
+//
+//                .onEnded { _ in
+//                    self.offset = .zero
+//                }
+//        )
+//        .offset(offset)
     }
 }
 
 struct MatchCapsuleView_Previews: PreviewProvider {
+    @State static var sIn: Bool = false
     static var previews: some View {
-        MatchCapsuleView(matchTime: "9月26日14:00-17:00", matchLocation: "6号羽毛球馆",matchDetail: "林丹-李宗伟")
+        MatchCapsuleView(showInsert: $sIn, matchTime: "9月26日14:00-17:00", matchLocation: "6号羽毛球馆",matchDetail: "林丹-李宗伟")
     }
 }

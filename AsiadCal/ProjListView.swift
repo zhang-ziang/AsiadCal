@@ -11,7 +11,6 @@ import Foundation
 extension AnyTransition {
     static var moveAndFade: AnyTransition {
         .asymmetric(
-            //            insertion: .move(edge: .leading),
             insertion: .scale.combined(with: .opacity),
             removal: .scale.combined(with: .opacity)
         )
@@ -20,7 +19,7 @@ extension AnyTransition {
 
 extension Animation{
     static func inOrderEasyInOut(_ delay:Double)-> Animation{
-        return .easeInOut(duration: 0.3).delay(Double(delay) * 0.05)
+        return .easeInOut(duration: 0.3).delay(0.4+Double(delay) * 0.1)
     }
     static func randomEasyInOut()-> Animation{
         
@@ -87,7 +86,7 @@ struct ProjListView: View {
                 
             }
             if(showDetail){
-                projDetailView(projTitle: "羽毛球", showMatchs: matchDetail)
+                projDetailView(projTitle: "羽毛球",showInsert: $showInsert ,showMatchs: false)
                     .zIndex(3.0)
                     .transition(.move(edge: .bottom))
                     .onTapGesture {
@@ -97,15 +96,55 @@ struct ProjListView: View {
                         }
                     }
             }
-            CircleView(circleAni: $circleAni)
+            CircleView(circleAni: $circleAni, circleShow: $showInsert)
+                .zIndex(4.0)
                 .opacity(showInsert ? 1.0:0.3)
                 .scaleEffect(showInsert ? 1.0 : 0.0)
                 .scaleEffect(circleAni ? 1.0 : 0.75)
                 .offset(x: showInsert ? 220:300,y:showInsert ? 300:450)
         }
+        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
     }
 }
-
+struct WastedDropDelegate : DropDelegate {
+    
+//    let todoStatus: TodoStatus
+//    let todoList: TodoList
+    @Binding var circleAni: Bool
+    @Binding var circleShow: Bool
+    
+    func validateDrop(info: DropInfo) -> Bool {
+        print("AddDropDelegate - validateDrop() called")
+        return true
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        print("AddDropDelegate - performDrop() called")
+        withAnimation{
+            circleAni = false
+            circleShow = false
+        }
+        return true
+    }
+    
+    func dropEntered(info: DropInfo) {
+        print("AddDropDelegate - dropEntered() called")
+    }
+    
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        print("AddDropDelegate - dropUpdated() called")
+        return DropProposal(operation: .move)
+    }
+    
+    func dropExited(info: DropInfo) {
+        print("AddDropDelegate - dropExited() called")
+//        withAnimation{
+//            circleAni = false
+//            circleShow = false
+//        }
+    }
+    
+}
 struct ProjListView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{

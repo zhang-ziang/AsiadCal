@@ -45,3 +45,7 @@ struct AsiadEvent: Identifiable {
 }
 
 var AsiadEvents : [AsiadEvent] = []
+
+var MatchCapsuleTypeIdentifier: String = "drag_drop.item"
+
+//var showInsert: Bool = false
