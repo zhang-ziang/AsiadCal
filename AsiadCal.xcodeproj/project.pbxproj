@@ -38,6 +38,8 @@
 		F2DD73312A244ED1001712C1 /* ProjData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD73302A244ED1001712C1 /* ProjData.swift */; };
 		F2DD73332A244EFE001712C1 /* ProjListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD73322A244EFE001712C1 /* ProjListView.swift */; };
 		F2DD73352A24521D001712C1 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD73342A24521D001712C1 /* GlobalData.swift */; };
+		F2DD73372A248F80001712C1 /* projDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD73362A248F80001712C1 /* projDetailView.swift */; };
+		F2DD73392A249C42001712C1 /* MatchCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD73382A249C42001712C1 /* MatchCapsuleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		F2DD73302A244ED1001712C1 /* ProjData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjData.swift; sourceTree = "<group>"; };
 		F2DD73322A244EFE001712C1 /* ProjListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjListView.swift; sourceTree = "<group>"; };
 		F2DD73342A24521D001712C1 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
+		F2DD73362A248F80001712C1 /* projDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = projDetailView.swift; sourceTree = "<group>"; };
+		F2DD73382A249C42001712C1 /* MatchCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCapsuleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +195,8 @@
 				F2DD732E2A244E5D001712C1 /* CircleView.swift */,
 				F2DD73302A244ED1001712C1 /* ProjData.swift */,
 				F2DD73322A244EFE001712C1 /* ProjListView.swift */,
+				F2DD73362A248F80001712C1 /* projDetailView.swift */,
+				F2DD73382A249C42001712C1 /* MatchCapsuleView.swift */,
 				F2DD73342A24521D001712C1 /* GlobalData.swift */,
 				F29FFCE62A1CD74800F74FF7 /* Assets.xcassets */,
 				F2DD73112A244DE2001712C1 /* yayunGIFs */,
@@ -435,6 +441,7 @@
 			files = (
 				F2DD732F2A244E5D001712C1 /* CircleView.swift in Sources */,
 				F29FFCE52A1CD74700F74FF7 /* ContentView.swift in Sources */,
+				F2DD73372A248F80001712C1 /* projDetailView.swift in Sources */,
 				F29FFCE32A1CD74700F74FF7 /* AsiadCalApp.swift in Sources */,
 				F29FFD0F2A1CD86F00F74FF7 /* CalendarView.swift in Sources */,
 				F2DD732D2A244E10001712C1 /* ProjView.swift in Sources */,
@@ -443,6 +450,7 @@
 				F2DD73352A24521D001712C1 /* GlobalData.swift in Sources */,
 				F29FFD0D2A1CD84D00F74FF7 /* CalendarList.swift in Sources */,
 				F2DD73332A244EFE001712C1 /* ProjListView.swift in Sources */,
+				F2DD73392A249C42001712C1 /* MatchCapsuleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

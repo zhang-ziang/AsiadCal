@@ -12,7 +12,7 @@ struct ProjView: View {
     var name: String
     var newURL = Bundle.main.url(forResource: "Trampoline", withExtension: "gif")
     var urlString: String
-    @State private var isAnimating: Bool = true
+    @Binding var isAnimating: Bool
 //    @State private var timer = Timer.publish(every: 2.18, on: .main, in: .common).autoconnect()
     var body: some View {
 //        EmptyView().onReceive(timer){ _ in
@@ -52,8 +52,9 @@ struct ProjView: View {
 }
 
 struct ProjView_Previews: PreviewProvider {
+    @State static var isAni: Bool = false
     static let url = "https://www.hangzhou2022.cn/ztzl/dttytbfb/jjxbs/202208/W020220805803130683224.gif"
     static var previews: some View {
-        ProjView(name: "Swimming",urlString: url)
+        ProjView(name: "Swimming",urlString: url, isAnimating: $isAni)
     }
 }

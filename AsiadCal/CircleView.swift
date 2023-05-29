@@ -6,28 +6,33 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct CircleView: View {
     @Binding var circleAni: Bool
+//    let r: Float = 200
+//    let theta: Float = 2*3.14159 * 200.0/360.0
     var body: some View {
         ZStack{
             Circle()
-                .fill(.black)
+                .foregroundColor(circleAni ? Color(uiColor: .systemPurple):Color(uiColor: .black))
                 .opacity(0.8)
                 .frame(width:600, height:600, alignment: .bottom)
-                .shadow(radius: 5)
+                .shadow(color: Color(white: 0.1, opacity: 0.9),radius: 10)
             Text("游泳比赛\n6月18日\n水立方")
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
-                .offset(x: -100,y:-200)
+                .offset(x:circleAni ? -75 : -100,
+                        y:circleAni ? -220 : -200)
             Text("山地自行车\n6月18日\n玉泉北门")
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
-                .offset(x: -200,y:95)
+                .offset(x:circleAni ? -200: -225,
+                        y:circleAni ? 95: 75)
             Text("+")
                 .scaleEffect(circleAni ? 2.0 : 1.0)
                 .foregroundColor(.white)
@@ -35,7 +40,7 @@ struct CircleView: View {
                 .font(.system(size: 80))
                 .multilineTextAlignment(.center)
 //                .offset(x: -200,y:-75)
-                .offset(x: circleAni ? -200 : -100,y:circleAni ? -75 : -45)
+                .offset(x: circleAni ? -200 : -150,y:circleAni ? -100 : -75)
         }
     }
 }
