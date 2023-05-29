@@ -8,26 +8,8 @@
 import SwiftUI
 import UIKit
 import FSCalendar
+import SDWebImageSwiftUI
 
-enum SportType {
-    case Athletics
-    case Basketball
-    case CyclingRoad
-    case Football
-    case CyclingMTB
-    case Boxing
-    case Fencing
-    case CanoeSlalom
-    case DragonBoat
-    case Swimming
-    case ESport
-}
-
-struct AsiadEvent {
-    var EventName : String
-    var EventDate : Date
-    var EventType : SportType
-}
 
 extension AnyTransition {
     static var moveAndScale: AnyTransition {
@@ -42,7 +24,7 @@ struct CalendarView: View {
     @State var selectedDate: Date = Date()
     @State var showDetail: Bool = false
     @State var showEvent: Bool = true
-    
+    @State var isAnimated: Bool = true
     @State var eventPos: CGSize = CGSize(width: 0, height: 0)
     let enterEffect = CGAffineTransform(translationX: 0, y: 100)
     let quitEffect = CGAffineTransform(translationX: 0, y: 800)
@@ -62,44 +44,53 @@ struct CalendarView: View {
         ZStack{
             if(showDetail) {
                 ZStack{
-                    RoundedRectangle(cornerRadius: 60)
-                        .strokeBorder(.purple, lineWidth: 10)
+                    AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                        .playbackMode(.normal)
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 60)
+//                                .strokeBorder(lineWidth: 10)
+                        )
+                        .frame(width: 394, height: 800)
+                        .offset(x: 0,y: 180)
+                    RoundedRectangle(cornerRadius: 50)
+//                        .strokeBorder(.purple, lineWidth: 10)
                         .foregroundColor(.white)
-                        .frame(height: 700)
-                        .offset(x: 0,y: 80)
+                        .frame(width: 374, height: 780)
+                        .offset(x: 0,y: 180)
+                    
                         
                     CalendarViewRepresentable(selectedDate: $selectedDate, showEvent: $showEvent, eventPos: $eventPos)
                         .padding(.bottom)
                         .padding(EdgeInsets(top: 40, leading: 0, bottom: 0, trailing: 0))
                         .frame(width: 300, height: 600)
-                        .offset(x:0, y:100)
+                        .offset(x:0, y:70)
                     
                 }
+                .offset(x:0, y:showEvent ? -100 : 0)
                 .transition(.move(edge: .bottom))
             }
             if(showDetail && showEvent) {
                 ZStack{
+                    
                     RoundedRectangle(cornerRadius: 60)
                         .foregroundColor(.black)
-                        .frame(height: 700)
-                        .offset(x: 0,y: 80)
+                        .frame(width: 394, height: 800)
+                        .offset(x: 0,y: 180)
+                        .offset(x:0, y:showEvent ? -100 : 0)
                         .opacity(0.001)
                         .gesture(tap)
                     ZStack{
                         RoundedRectangle(cornerRadius: 20)
                             .frame(width: 350, height: 200)
-                            .foregroundColor(.purple)
+                            .foregroundColor(.white)
                             .offset(x: 0, y: 300)
                             .shadow(radius: 60)
                         VStack{
-                            Text("test here 0")
-                                .font(.system(size: 30))
-                            Text("test here 1")
-                                .font(.system(size: 30))
-                            Text("test here 2")
-                                .font(.system(size: 30))
+                            Text("dayTime MM DD HH")
+                                .font(.system(size: 20))
+                                .multilineTextAlignment(.leading)
                         }
-                        .offset(y: 250)
+                        .offset(y: 290)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                     }
                 }
@@ -118,7 +109,8 @@ struct CalendarView: View {
                     .rotationEffect(.degrees(showDetail ? 90 : -90))
                     .scaleEffect(2.0)
                     .padding()
-            }.offset(x:0,y: -200)
+            }.offset(x:0,y: -350)
+            
             
         }
         
@@ -176,7 +168,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
     class Coordinator: NSObject,FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
         var parent: CalendarViewRepresentable
 
-        var AsiadEvents : [AsiadEvent]
+//        var AsiadEvents : [AsiadEvent]
         
         var Event2Color : [SportType : UIColor] = [
             .Athletics  : .red ,
@@ -194,7 +186,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
         
         init(_ parent: CalendarViewRepresentable) {
             self.parent = parent
-            self.AsiadEvents = []
+//            self.AsiadEvents = []
             // 在此load赛事日程
             AsiadEvents.append(
                 AsiadEvent(EventName: "英雄联盟表演赛-中国vs韩国", EventDate: Date(), EventType: .ESport)
