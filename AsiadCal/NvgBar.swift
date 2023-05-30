@@ -50,8 +50,13 @@ struct NvgBar: View {
 //            if showText {
 //                Text("hello~")
 //            }
+            
             if !userTapped && !calendarTapped && !competitionTapped {
+                recentEventView()
+                    .zIndex(0.0)
+                    .transition(.move(edge: .top).combined(with: .opacity))
                 ZStack{
+                    
                     AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
                         .playbackMode(.reversedBounce)
                         .frame(width: 320, height: 60)

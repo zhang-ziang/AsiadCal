@@ -44,7 +44,10 @@ struct AsiadEvent: Identifiable {
     var EventType : SportType
 }
 
-var AsiadEvents : [AsiadEvent] = []
+var subscribedAsiadEvents : [AsiadEvent] = [
+    AsiadEvent(EventName: "英雄联盟表演赛", EventDate: Date.now.addingTimeInterval(86400 * 3), EventType: .ESport),
+    AsiadEvent(EventName: "足球预选赛", EventDate: Date.now.addingTimeInterval(86400 * 4), EventType: .Football)
+]
 
 var MatchCapsuleTypeIdentifier: String = "drag_drop.item"
 

@@ -237,19 +237,19 @@ struct CalendarViewRepresentable: UIViewRepresentable {
         
         init(_ parent: CalendarViewRepresentable) {
             self.parent = parent
-            AsiadEvents = []
+//            subscribedAsiadEvents = []
             // 在此load赛事日程
-            AsiadEvents.append(
-                AsiadEvent(EventName: "英雄联盟表演赛", EventDate: Date(), EventType: .ESport)
-            )
-            AsiadEvents.append(
-                AsiadEvent(EventName: "足球预选赛", EventDate: Date(), EventType: .Football)
-            )
+//            subscribedAsiadEvents.append(
+//                AsiadEvent(EventName: "英雄联盟表演赛", EventDate: Date(), EventType: .ESport)
+//            )
+//            subscribedAsiadEvents.append(
+//                AsiadEvent(EventName: "足球预选赛", EventDate: Date(), EventType: .Football)
+//            )
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
             var EventColors : [UIColor] = []
-            AsiadEvents.forEach { event in
+            subscribedAsiadEvents.forEach { event in
                 if event.EventDate.formatted(date: .complete, time: .omitted)
                     == date.formatted(date: .complete, time: .omitted){
                     EventColors.append(Event2Color[event.EventType]!)
@@ -260,7 +260,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventSelectionColorsFor date: Date) -> [UIColor]? {
             var EventColors : [UIColor] = []
-            AsiadEvents.forEach { event in
+            subscribedAsiadEvents.forEach { event in
                 if event.EventDate.formatted(date: .complete, time: .omitted)
                     == date.formatted(date: .complete, time: .omitted){
                     EventColors.append(Event2Color[event.EventType]!)
@@ -279,7 +279,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
                       at monthPosition: FSCalendarMonthPosition) {
             parent.selectedDate = date
             parent.eventTexts = []
-            AsiadEvents.forEach { event in
+            subscribedAsiadEvents.forEach { event in
                 if event.EventDate.formatted(date: .complete, time: .omitted)
                     == date.formatted(date: .complete, time: .omitted){
                     parent.eventTexts.append(event)
@@ -300,7 +300,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
                       numberOfEventsFor date: Date) -> Int {
             
             var eventCount = 0
-            AsiadEvents.forEach { event in
+            subscribedAsiadEvents.forEach { event in
                 if event.EventDate.formatted(date: .complete, time: .omitted)
                     == date.formatted(date: .complete, time: .omitted){
                     eventCount += 1;
