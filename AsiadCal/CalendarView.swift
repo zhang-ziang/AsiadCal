@@ -131,7 +131,7 @@ struct CalendarView: View {
                                     ForEach(eventTexts) { event in
                                         HStack{
                                             Text(event.EventName)
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 15))
                                             Spacer()
                                             Divider()
                                                 .frame(minWidth: 5)
@@ -142,7 +142,7 @@ struct CalendarView: View {
                                                     time: .shortened
                                                 )
                                             )
-                                            .font(.system(size: 20))
+                                            .font(.system(size: 15))
                                         }
                                     }
                                 }
