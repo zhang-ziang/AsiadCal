@@ -20,15 +20,29 @@ struct recentEventView: View {
                 ForEach(subscribedAsiadEvents){
                     event in
                     if(event.EventDate >= Date()){
-                        VStack{
-                            HStack {
-                                Text(event.EventName)
-                                    .font(.system(size: 15))
-                                    .frame(height: 30)
-                                Spacer()
-                                Divider()
-                                    .frame(minWidth: 5)
-                                    .overlay(Color(Event2Color[event.EventType]!))
+                        HStack {
+                            Text(event.EventName)
+                                .font(.system(size: 15))
+                                .frame(height: 40)
+                            Spacer()
+                            Divider()
+                                .frame(minWidth: 5)
+                                .overlay(Color(Event2Color[event.EventType]!))
+                            VStack{
+                                HStack {
+//                                    Spacer()
+                                    
+                                    ForEach(RecommandTravelMethod[event.EventPos]!) {
+                                        mtd in
+                                        Image(systemName: mtd.mtdName)
+                                            .font(.system(size: 13))
+                                    }
+                                    
+                                    
+                                    Text(event.EventPos)
+                                        .font(.system(size: 13))
+                                    
+                                }
                                 Text(
                                     event.EventDate.formatted(
                                         date: .abbreviated,
@@ -49,7 +63,7 @@ struct recentEventView: View {
                         
                     }
                 }
-                .listRowBackground(Color(red: 0.9, green: 0.9, blue: 0.9))
+                .listRowBackground(Color(red: 0.96, green: 0.96, blue: 0.96))
             }
             .scrollContentBackground(.hidden)
         }
