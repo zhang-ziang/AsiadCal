@@ -14,7 +14,7 @@ struct recentEventView: View {
         VStack {
             Text("Recent Events")
                 .font(.system(size: 30))
-                .offset(x: -80)
+                .offset(x: -80, y: 20)
             
             List {
                 ForEach(subscribedAsiadEvents){
