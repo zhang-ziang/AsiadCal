@@ -53,7 +53,7 @@ struct NvgBar: View {
             
             if curView == .atIdleView {
                 recentEventView()
-                    .zIndex(0.0)
+//                    .zIndex(0.0)
                     .transition(.move(edge: .top).combined(with: .opacity))
                 ZStack{
                     
@@ -130,7 +130,7 @@ struct NvgBar: View {
                         }
                     }
                     .frame(width: 250)
-                    .zIndex(8.0)
+                    .zIndex(118.0)
                     .offset(x: 0, y: 345)
                     
                 }

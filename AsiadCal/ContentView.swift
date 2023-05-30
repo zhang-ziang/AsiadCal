@@ -18,11 +18,11 @@ struct ContentView: View {
     @State var curView: NvgState = .atIdleView
     var body: some View {
         ZStack {
-        
-            NvgBar(curView: $curView)
-                .zIndex(10.0)
             CalendarView(curView: $curView)
-                .zIndex(1.0)
+//                .zIndex(0.0)
+            NvgBar(curView: $curView)
+//                .zIndex(10.0)
+            
         }
 //        .padding()
     }

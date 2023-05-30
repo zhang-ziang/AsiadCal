@@ -49,10 +49,13 @@ struct recentEventView: View {
                         
                     }
                 }
+                .listRowBackground(Color(red: 0.9, green: 0.9, blue: 0.9))
             }
-            
+            .scrollContentBackground(.hidden)
         }
-        .zIndex(0.0)
+//        .frame(height: 500)
+//        .offset(y: -130)
+//        .zIndex(10.0)
     }
 }
 
