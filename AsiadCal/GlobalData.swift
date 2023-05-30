@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum SportType {
+enum SportType: Decodable {
     case Athletics
     case Basketball
     case CyclingRoad
@@ -21,6 +21,105 @@ enum SportType {
     case Swimming
     case ESport
     case None
+    case Amateur
+    
+    init(from decoder: Decoder) throws {
+        let label = try decoder.singleValueContainer().decode(String.self)
+        self = SportType(rawValue: label)
+    }
+    
+    init(rawValue: String){
+        switch rawValue{
+            case "Athletics":
+                self = .Athletics
+            case "Basketball":
+                self = .Basketball
+            case "CyclingRoad":
+                self = .CyclingRoad
+            case "Football":
+                self = .Football
+            case "CyclingMTB":
+                self = .CyclingMTB
+            case "Boxing":
+                self = .Boxing
+            case "Fencing":
+                self = .Fencing
+            case "CanoeSlalom":
+                self = .CanoeSlalom
+            case "DragonBoat":
+                self = .DragonBoat
+            case "Swimming":
+                self = .Swimming
+            case "ESport":
+                self = .ESport
+            case "Amateur":
+                self = .Amateur
+            default:
+                self = .None
+        }
+    }
+    
+    init(ID: Int){
+        switch ID{
+            case 0:
+                self = .Athletics
+            case 1:
+                self = .Basketball
+            case 2:
+                self = .CyclingRoad
+            case 3:
+                self = .Football
+            case 4:
+                self = .CyclingMTB
+            case 5:
+                self = .Boxing
+            case 6:
+                self = .Fencing
+            case 7:
+                self = .CanoeSlalom
+            case 8:
+                self = .DragonBoat
+            case 9:
+                self = .Swimming
+            case 10:
+                self = .ESport
+            case 11:
+                self = .Amateur
+            default:
+                self = .None
+        }
+    }
+    
+    func toString()-> String{
+        switch self{
+            case .Athletics:
+                return "Athletics"
+            case .Basketball:
+                return "Basketball"
+            case .CyclingRoad:
+                return "CyclingRoad"
+            case .Football:
+                return "Football"
+            case .CyclingMTB:
+                return "CyclingMTB"
+            case .Boxing:
+                return "Boxing"
+            case .Fencing:
+                return "Fencing"
+            case .CanoeSlalom:
+                return "CanoeSlalom"
+            case .DragonBoat:
+                return "DragonBoat"
+            case .Swimming:
+                return "Swimming"
+            case .ESport:
+                return "ESport"
+            case .Amateur:
+                return "Amateur"
+            default:
+                return ""
+        }
+    }
 }
 
 var Event2Color : [SportType : UIColor] = [
@@ -65,4 +164,48 @@ var RecommandTravelMethod : [String : [TravelMtd]] = [
 
 var MatchCapsuleTypeIdentifier: String = "drag_drop.item"
 
-//var showInsert: Bool = false
+
+class MatchesData: ObservableObject{
+    @Published var matches: [Match]
+    init(){
+        matches = loadMatches(filename: "matchesData")
+    }
+//    init(){
+//        var match: Match()
+//        matches = []
+//    }
+}
+
+struct Match: Decodable {
+    var title: String
+    var matchDate: String
+    var projTag: SportType
+    var Location: String
+    var detail_country1: String
+    var detail_name1: String
+    var detail_country2: String
+    var detail_name2: String
+//    var show_mode:
+}
+
+func loadMatches(filename fileName: String) -> [Match]{
+    let data: Data
+    guard let url = Bundle.main.url(forResource: fileName, withExtension: "json")
+    else{
+        fatalError("Couldn't find \(fileName) in main bundle.")
+    }
+    
+    do {
+        data = try Data(contentsOf: url)
+    }catch{
+        fatalError("Couldn't load \(fileName) from main bundle:\n\(error)")
+    }
+    do {
+        let decoder = JSONDecoder()
+        let jsonData = try decoder.decode([Match].self, from: data)
+        return jsonData
+    } catch {
+        print("error:\(error)")
+    }
+    return []
+}

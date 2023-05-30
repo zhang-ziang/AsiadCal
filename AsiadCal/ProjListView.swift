@@ -28,7 +28,8 @@ extension Animation{
 }
 
 struct ProjListView: View {
-    @EnvironmentObject var projdatalist : ProjDataList
+//    @EnvironmentObject var projdatalist : ProjDataList
+    @EnvironmentObject var matchesData : MatchesData
     @State private var showProj = false
     @State private var showInsert = false
     @State private var circleAni  = false
@@ -39,26 +40,31 @@ struct ProjListView: View {
     //    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
         ZStack{
-            VStack(spacing: 30){
-                Button("Press to show projects") {
-                    withAnimation {
-                        showProj.toggle()
-                    }
-                }
-                Button("Press to show insert") {
-                    withAnimation {
-                        showInsert.toggle()
-                    }
-                }
-                Button("Press to show circleAni") {
-                    withAnimation {
-                        circleAni.toggle()
-                    }
-                }
+            VStack(alignment: .leading, spacing: 30){
+//                Button("Press to show projects") {
+//                    withAnimation {
+//                        showProj.toggle()
+//                    }
+//                }
+//                Button("Press to show insert") {
+//                    withAnimation {
+//                        showInsert.toggle()
+//                    }
+//                }
+//                Button("Press to show circleAni") {
+//                    withAnimation {
+//                        circleAni.toggle()
+//                    }
+//                }
+//                Spacer(minLength: 2)
+                Text("所有比赛")
+                    .font(.system(size : 40))
+                    .bold()
+                    .frame(height:60)
                 
                 LazyVGrid(columns: columns,spacing:40){
                     ForEach(0...11, id: \.self) { value in
-                        ProjView(name: projdatalist.projDatas[value].name,urlString: projdatalist.projDatas[value].gifurl, isAnimating: $gifAni)
+                        ProjView(name: SportType(ID: value).toString(), isAnimating: $gifAni)
                         //                    RoundedRectangle(cornerRadius: 20)
                         //                        .fill(Color(hue: Double.random(in: 0.4...0.6), saturation: 0.25, brightness: 0.98))
                             .frame(width:100, height:100)
@@ -83,10 +89,10 @@ struct ProjListView: View {
                 .onAppear{
                     showProj = true
                 }
-                
+                Spacer()
             }
             if(showDetail){
-                projDetailView(projTitle: "羽毛球",showInsert: $showInsert ,showMatchs: false)
+                projDetailView(matches: matchesData.matches, projTitle: "足球",showInsert: $showInsert ,showMatchs: false)
                     .zIndex(3.0)
                     .transition(.move(edge: .bottom))
                     .onTapGesture {
@@ -146,10 +152,12 @@ struct WastedDropDelegate : DropDelegate {
     
 }
 struct ProjListView_Previews: PreviewProvider {
+    @State static var matchesData = MatchesData()
     static var previews: some View {
         VStack{
             ProjListView()
-                .environmentObject(ProjDataList.sampleData())
+//                .environmentObject(ProjDataList.sampleData())
+                .environmentObject(matchesData)
         }
     }
 }

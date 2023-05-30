@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct NvgBar: View {
-    @State var isAnimated: Bool = true
+    @State var isAnimated: Bool = false
     @State var showText:   Bool = true
     
     @Binding var curView : NvgState

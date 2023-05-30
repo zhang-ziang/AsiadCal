@@ -9,10 +9,11 @@ import SwiftUI
 
 struct MatchCapsuleView: View {
     @Binding var showInsert: Bool
+    var match: Match
 //    var matchTitle: String
-    var matchTime: String
-    var matchLocation: String
-    var matchDetail: String
+//    var matchTime: String = ""
+//    var matchLocation: String = ""
+//    var matchDetail: String = ""
     @State private var offset = CGSize.zero
     var body: some View {
         ZStack{
@@ -25,7 +26,7 @@ struct MatchCapsuleView: View {
                     Rectangle()
                         .frame(width:30, height:20)
                         .foregroundColor(.red)
-                    Text(matchDetail)
+                    Text(match.detail_name1 + "-" + match.detail_name2)
                         .frame(width:90, height:30)
                         .font(.system(size: 16))
                         .bold()
@@ -34,11 +35,11 @@ struct MatchCapsuleView: View {
                         .foregroundColor(.blue)
                 }
                 
-                Text(matchTime)
+                Text("\(match.matchDate)")
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .font(.footnote)
-                Text(matchLocation)
+                Text(match.Location)
                     .font(.footnote)
 
             }
@@ -65,7 +66,8 @@ struct MatchCapsuleView: View {
 
 struct MatchCapsuleView_Previews: PreviewProvider {
     @State static var sIn: Bool = false
+    @State static var matchesData = loadMatches(filename: "matchesData")
     static var previews: some View {
-        MatchCapsuleView(showInsert: $sIn, matchTime: "9月26日14:00-17:00", matchLocation: "6号羽毛球馆",matchDetail: "林丹-李宗伟")
+        MatchCapsuleView(showInsert: $sIn, match: matchesData[0])
     }
 }

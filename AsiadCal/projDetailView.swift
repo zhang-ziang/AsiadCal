@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct projDetailView: View {
+    var matches: [Match]
     var projTitle: String
     @Binding var showInsert: Bool
     @State var showMatchs: Bool = false
@@ -40,7 +41,7 @@ struct projDetailView: View {
                         .font(.title)
                     LazyVGrid(columns: columns, spacing: 10){
                         ForEach(0...7, id: \.self) { value in
-                            MatchCapsuleView(showInsert: $showInsert, matchTime: "9月26日14:00-17:00", matchLocation: "6号羽毛球馆",matchDetail: "林丹-李宗伟")
+                            MatchCapsuleView(showInsert: $showInsert, match: matches[0])
                                 .frame(width:100, height:100)
                                 .opacity(showMatchs ? 1.0:0.0)
                                 .scaleEffect(showMatchs ? 0.9 : 0.3)
@@ -56,9 +57,10 @@ struct projDetailView: View {
 
 struct projDetailView_Previews: PreviewProvider {
     @State static var showInsert: Bool = false
+    @State static var matches = loadMatches(filename: "matchesData")
     static var previews: some View {
         VStack{
-            projDetailView(projTitle: "羽毛球", showInsert: $showInsert)
+            projDetailView(matches: matches, projTitle: "足球", showInsert: $showInsert)
         }
     }
 }
