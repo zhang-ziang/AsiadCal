@@ -10,6 +10,7 @@ import Foundation
 
 struct CircleView: View {
     @Binding var circleAni: Bool
+    @Binding var circleShow: Bool
 //    let r: Float = 200
 //    let theta: Float = 2*3.14159 * 200.0/360.0
     var body: some View {
@@ -42,13 +43,62 @@ struct CircleView: View {
 //                .offset(x: -200,y:-75)
                 .offset(x: circleAni ? -200 : -150,y:circleAni ? -100 : -75)
         }
+        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: AddDropDelegate(circleAni: $circleAni, circleShow: $circleShow))
     }
 }
 
+struct AddDropDelegate : DropDelegate {
+    
+//    let todoStatus: TodoStatus
+//    let todoList: TodoList
+    @Binding var circleAni: Bool
+    @Binding var circleShow: Bool
+    
+    func validateDrop(info: DropInfo) -> Bool {
+        print("AddDropDelegate - validateDrop() called")
+        withAnimation{
+            circleAni = true
+        }
+        return true
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        print("AddDropDelegate - performDrop() called")
+        withAnimation{
+            circleAni = false
+            circleShow = false
+        }
+        return true
+    }
+    
+    func dropEntered(info: DropInfo) {
+        print("AddDropDelegate - dropEntered() called")
+        withAnimation{
+            circleAni = true
+        }
+    }
+    
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        print("AddDropDelegate - dropUpdated() called")
+        return DropProposal(operation: .move)
+    }
+    
+    func dropExited(info: DropInfo) {
+        print("AddDropDelegate - dropExited() called")
+        withAnimation{
+            circleAni = false
+        }
+    }
+    
+}
+
+
+
 struct CircleView_Previews: PreviewProvider {
     @State static var circleAni: Bool = false
+    @State static var circleShow: Bool = false
     static var previews: some View {
-        CircleView(circleAni: $circleAni)
+        CircleView(circleAni: $circleAni, circleShow: $circleShow)
     }
 }
 

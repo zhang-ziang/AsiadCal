@@ -11,7 +11,8 @@ import SwiftUI
 struct AsiadCalApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            ProjListView().environmentObject(ProjDataList.sampleData())
         }
     }
 }
