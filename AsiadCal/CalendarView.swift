@@ -22,7 +22,7 @@ extension AnyTransition {
 struct CalendarView: View {
     
     @State var selectedDate: Date = Date()
-    @Binding var showDetail: Bool
+    @Binding var curView: NvgState
     @State var showEvent: Bool = false
     @State var isAnimated: Bool = true
     @State var eventPos: CGSize = CGSize(width: 0, height: 0)
@@ -33,7 +33,7 @@ struct CalendarView: View {
         TapGesture(count: 1)
             .onEnded {
                 withAnimation{
-                    if(showDetail) {
+                    if(curView == .atCalendarView) {
                         showEvent = false
                         isRotated = false
                     }
@@ -44,7 +44,7 @@ struct CalendarView: View {
         TapGesture(count: 2)
             .onEnded {
                 withAnimation{
-                    showDetail = false
+                    curView = .atIdleView
                     showEvent = false
                     isRotated = false
                 }
@@ -55,7 +55,7 @@ struct CalendarView: View {
         TapGesture(count: 1)
             .onEnded {
                 withAnimation{
-                    showDetail = false
+                    curView = .atIdleView
                     showEvent = false
                     isRotated = false
                 }
@@ -69,7 +69,7 @@ struct CalendarView: View {
                 .foregroundColor(.white)
                 .blendMode(.multiply)
                 .gesture(exitTap)
-            if(showDetail && !showEvent) {
+            if(curView == .atCalendarView && !showEvent) {
                 HStack{
                     Image(systemName: "sun.max.fill")
                         .symbolRenderingMode(.hierarchical)
@@ -96,7 +96,7 @@ struct CalendarView: View {
                 .zIndex(6.0)
                 .transition(.move(edge: .top).combined(with: .opacity))
             }
-            if(showDetail) {
+            if(curView == .atCalendarView) {
                 ZStack{
                     AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
                         .playbackMode(.bounce)
@@ -134,7 +134,7 @@ struct CalendarView: View {
                 .gesture(doubleTap)
                 .transition(.move(edge: .bottom))
             }
-            if(showDetail && showEvent) {
+            if(curView == .atCalendarView && showEvent) {
                 ZStack{
                     
                     RoundedRectangle(cornerRadius: 60)
@@ -342,7 +342,7 @@ func isWeekend(date: Date) -> Bool {
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            CalendarView(showDetail: .constant(true))
+            CalendarView(curView: .constant(.atCalendarView))
         }
     }
 

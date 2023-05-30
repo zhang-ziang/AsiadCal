@@ -12,10 +12,10 @@ struct NvgBar: View {
     @State var isAnimated: Bool = true
     @State var showText:   Bool = true
     
-    @Binding var showNvgbar       : Bool
-    @Binding var calendarTapped   : Bool
-    @Binding var competitionTapped: Bool
-    @Binding var userTapped       : Bool
+    @Binding var curView : NvgState
+//    @State var calendarTapped   : Bool
+//    @State var competitionTapped: Bool
+//    @State var userTapped       : Bool
     
 //    var calendarTap: some Gesture {
 //        TapGesture(count: 1)
@@ -51,7 +51,7 @@ struct NvgBar: View {
 //                Text("hello~")
 //            }
             
-            if !userTapped && !calendarTapped && !competitionTapped {
+            if curView == .atIdleView {
                 recentEventView()
                     .zIndex(0.0)
                     .transition(.move(edge: .top).combined(with: .opacity))
@@ -69,9 +69,7 @@ struct NvgBar: View {
                     HStack {
                         Button {
                             withAnimation{
-                                calendarTapped = true
-//                                showText.toggle()
-//                                showNvgbar = false
+                                curView = .atCalendarView
                             }
                         } label: {
                             Label{
@@ -151,7 +149,7 @@ struct NvgBar_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack{
-            NvgBar(showNvgbar: .constant(true), calendarTapped: .constant(false), competitionTapped: .constant(false), userTapped: .constant(false))
+            NvgBar(curView: .constant(.atIdleView))
 //            NvgBar()
         }
     }

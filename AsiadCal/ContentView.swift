@@ -7,17 +7,21 @@
 
 import SwiftUI
 
+enum NvgState {
+    case atCalendarView
+    case atCompetitionView
+    case atUserSettingView
+    case atIdleView
+}
+
 struct ContentView: View {
-    @State var calendarTapped   : Bool = false
-    @State var competitionTapped: Bool = false
-    @State var userTapped       : Bool = false
-    @State var showNvgbar       : Bool = true
+    @State var curView: NvgState = .atIdleView
     var body: some View {
         ZStack {
         
-            NvgBar(showNvgbar: $showNvgbar, calendarTapped: $calendarTapped, competitionTapped: $competitionTapped, userTapped: $userTapped)
+            NvgBar(curView: $curView)
                 .zIndex(10.0)
-            CalendarView(showDetail: $calendarTapped)
+            CalendarView(curView: $curView)
                 .zIndex(1.0)
         }
 //        .padding()
