@@ -66,10 +66,14 @@ struct NvgBar: View {
                         )
                         .offset(y: 350)
                         .zIndex(7.0)
+                        .onAppear{
+                            isAnimated = true
+                        }
                     HStack {
                         Button {
                             withAnimation{
                                 curView = .atCalendarView
+                                isAnimated = false
                             }
                         } label: {
                             Label{
