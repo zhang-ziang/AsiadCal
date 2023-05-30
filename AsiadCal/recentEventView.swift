@@ -52,6 +52,7 @@ struct recentEventView: View {
             }
             
         }
+        .zIndex(0.0)
     }
 }
 

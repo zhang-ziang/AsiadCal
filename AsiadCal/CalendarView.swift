@@ -27,13 +27,15 @@ struct CalendarView: View {
     @State var isAnimated: Bool = true
     @State var eventPos: CGSize = CGSize(width: 0, height: 0)
     @State var eventTexts: [AsiadEvent] = []
-    
+    @State var isRotated : Bool = false
+//    @State var animationAmount: Double = 0
     var tap: some Gesture {
         TapGesture(count: 1)
             .onEnded {
                 withAnimation{
                     if(showDetail) {
                         showEvent = false
+                        isRotated = false
                     }
                 }
             }
@@ -44,6 +46,7 @@ struct CalendarView: View {
                 withAnimation{
                     showDetail = false
                     showEvent = false
+                    isRotated = false
                 }
             }
     }
@@ -54,16 +57,45 @@ struct CalendarView: View {
                 withAnimation{
                     showDetail = false
                     showEvent = false
+                    isRotated = false
                 }
             }
     }
     
     var body: some View {
         ZStack{
+            
             Rectangle()
                 .foregroundColor(.white)
                 .blendMode(.multiply)
                 .gesture(exitTap)
+            if(showDetail && !showEvent) {
+                HStack{
+                    Image(systemName: "sun.max.fill")
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundColor(.yellow)
+                        .font(.system(size: 80))
+                        .shadow(radius: 5)
+//                        .scaleEffect(isRotated)
+                        .rotationEffect(.degrees(isRotated ? 360 : 0))
+                        .animation(
+                            .linear(duration: 40)
+                                .repeatForever(autoreverses: false),
+                            value: isRotated
+                        )
+                        .onAppear{
+                            isRotated = true
+                        }
+                    VStack{
+                        Text("34°C")
+                            .font(.system(size: 40))
+                        Text("西湖区 空气良")
+                    }.shadow(radius: 5)
+                }
+                .offset(y: -300)
+                .zIndex(6.0)
+                .transition(.move(edge: .top).combined(with: .opacity))
+            }
             if(showDetail) {
                 ZStack{
                     AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
@@ -86,6 +118,7 @@ struct CalendarView: View {
                     CalendarViewRepresentable(
                         selectedDate: $selectedDate,
                         showEvent: $showEvent,
+                        isRotating: $isRotated,
                         eventPos: $eventPos,
                         eventTexts: $eventTexts
                     )
@@ -113,11 +146,7 @@ struct CalendarView: View {
                         .gesture(tap)
                         
                     ZStack(alignment: .leading){
-//                        RoundedRectangle(cornerRadius: 20)
-//                            .frame(width: 300, height: 220)
-//                            .foregroundColor(.white)
-////                                .offset(x: 0, y: 280)
-//                            .shadow(radius: 10)
+
                         
                         List(){
                             VStack{
@@ -159,23 +188,7 @@ struct CalendarView: View {
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .zIndex(5.0)
             }
-            // used for debug
-//            Button {
-//                withAnimation {
-//                    showDetail.toggle()
-//                    if(showDetail) {
-//                        showEvent = false
-//                    }
-//                }
-//            } label: {
-//                Label("Graph", systemImage: "chevron.right.circle")
-//                    .labelStyle(.iconOnly)
-//                    .imageScale(.large)
-//                    .rotationEffect(.degrees(showDetail ? 90 : -90))
-//                    .scaleEffect(2.0)
-//                    .padding()
-//            }.offset(x:0,y: -350)
-//                .zIndex(6.0)
+
             
         }
         
@@ -190,6 +203,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
     fileprivate var calendar = FSCalendar()
     @Binding var selectedDate: Date
     @Binding var showEvent: Bool
+    @Binding var isRotating: Bool
     @Binding var eventPos: CGSize
     @Binding var eventTexts: [AsiadEvent]
     
@@ -230,21 +244,9 @@ struct CalendarViewRepresentable: UIViewRepresentable {
     
     class Coordinator: NSObject,FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance {
         var parent: CalendarViewRepresentable
-
-//        var AsiadEvents : [AsiadEvent]
-        
-        
         
         init(_ parent: CalendarViewRepresentable) {
             self.parent = parent
-//            subscribedAsiadEvents = []
-            // 在此load赛事日程
-//            subscribedAsiadEvents.append(
-//                AsiadEvent(EventName: "英雄联盟表演赛", EventDate: Date(), EventType: .ESport)
-//            )
-//            subscribedAsiadEvents.append(
-//                AsiadEvent(EventName: "足球预选赛", EventDate: Date(), EventType: .Football)
-//            )
         }
         
         func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
@@ -287,6 +289,7 @@ struct CalendarViewRepresentable: UIViewRepresentable {
             }
             withAnimation {
                 parent.showEvent = true
+                parent.isRotating = false
             }
         }
     
