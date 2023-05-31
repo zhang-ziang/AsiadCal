@@ -57,10 +57,9 @@ struct recommendView: View {
                 withAnimation{
                     showMatchs = true
                 }
-            }
+            }.onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
         }
     }
-    
 }
 
 func regenOffset() -> [offsetXY]{
