@@ -134,7 +134,13 @@ struct NvgBar: View {
                                 //                                showText.toggle()
                                 //                                showNvgbar = false
                                 //                                curView = .atCompetitionView
-                                curView = .atRecommendView
+                                if(curView != .atRecommendView) {
+                                    curView = .atRecommendView
+                                }
+                                else {
+                                    curView = .atIdleView
+                                }
+                                
                             }
                         } label: {
                             Label{

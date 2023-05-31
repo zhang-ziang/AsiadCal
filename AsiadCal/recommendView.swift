@@ -27,7 +27,7 @@ struct recommendView: View {
                     .playbackMode(.bounce)
                     .ignoresSafeArea()
                     .frame(width: .infinity, height: .infinity)
-                    .opacity(0.8)
+                    .opacity(0.5)
 //                    .clipShape(
 //                        RoundedRectangle(cornerRadius: 30)
 //                    )
