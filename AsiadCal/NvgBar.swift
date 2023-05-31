@@ -20,19 +20,18 @@ struct NvgBar: View {
             .onEnded {
                 withAnimation{
                     addEvent = false
+                }
             }
-        }
     }
     
     var body: some View {
         ZStack{
-//            // used fo debug
-//            if showText {
-//                Text("hello~")
-//            }
+            //            // used fo debug
+            //            if showText {
+            //                Text("hello~")
+            //            }
             
-
-            if curView == .atIdleView {
+            if curView == .atIdleView || curView == .atRecommendView {
                 ZStack{
                     if(addEvent) {
                         Rectangle()
@@ -69,29 +68,31 @@ struct NvgBar: View {
                                     .clipShape(
                                         RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
                                     )
-//                                    .colorInvert()
+                                //                                    .colorInvert()
                                 
-//                                if(!addEvent) {
-                                    Text("+")
-                                        .font(.system(size: 50))
-                                        .foregroundColor(.white)
-                                        .opacity(addEvent ? 0.0 : 1.0)
-//                                }
+                                //                                if(!addEvent) {
+                                Text("+")
+                                    .font(.system(size: 50))
+                                    .foregroundColor(.white)
+                                    .opacity(addEvent ? 0.0 : 1.0)
+                                //                                }
                             }
                         }
                     }
                     .shadow(radius: 10)
                     .offset(x: addEvent ? 0 : 130, y: addEvent ? 0 : 250)
-    //                .frame(width: addEvent ? 350 : 70, height: addEvent ? 200 : 70)
+                    //                .frame(width: addEvent ? 350 : 70, height: addEvent ? 200 : 70)
                     
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .zIndex(1145.0)
                 
                 
-                recentEventView()
-//                    .zIndex(0.0)
-                    .transition(.move(edge: .top).combined(with: .opacity))
+                if curView == .atIdleView{
+                    recentEventView()
+                    //                    .zIndex(0.0)
+                        .transition(.move(edge: .top).combined(with: .opacity))
+                }
                 ZStack{
                     
                     AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
@@ -117,21 +118,23 @@ struct NvgBar: View {
                                 
                             } icon: {
                                 Image("calendarIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 50, height: 50)
-                                .offset(y: 10)
-                                .clipped()
-                                .colorInvert()
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 50, height: 50)
+                                    .offset(y: 10)
+                                    .clipped()
+                                    .colorInvert()
                                 
                             }
                         }
                         Spacer()
                         Button {
                             withAnimation{
-//                                competitionTapped = true
-//                                showText.toggle()
-//                                showNvgbar = false
+                                //                                competitionTapped = true
+                                //                                showText.toggle()
+                                //                                showNvgbar = false
+                                //                                curView = .atCompetitionView
+                                curView = .atRecommendView
                             }
                         } label: {
                             Label{
@@ -144,16 +147,16 @@ struct NvgBar: View {
                                     .offset(y: 7)
                                     .clipped()
                                     .colorInvert()
-//                                    .gesture(competitionTap)
+                                //                                    .gesture(competitionTap)
                             }
                         }
                         
                         Spacer()
                         Button {
                             withAnimation{
-//                                userTapped = true
-//                                showText.toggle()
-//                                showNvgbar = false
+                                //                                userTapped = true
+                                //                                showText.toggle()
+                                //                                showNvgbar = false
                             }
                         } label: {
                             Label{
@@ -166,7 +169,7 @@ struct NvgBar: View {
                                     .offset(y: 10)
                                     .clipped()
                                     .colorInvert()
-//                                    .gesture(userTap)
+                                //                                    .gesture(userTap)
                             }
                         }
                     }
@@ -184,14 +187,14 @@ struct NvgBar: View {
 }
 
 struct NvgBar_Previews: PreviewProvider {
-//    @State var calendarTapped   : Bool = false
-//    @State var competitionTapped: Bool = false
-//    @State var userTapped       : Bool = false
+    //    @State var calendarTapped   : Bool = false
+    //    @State var competitionTapped: Bool = false
+    //    @State var userTapped       : Bool = false
     
     static var previews: some View {
         VStack{
             NvgBar(curView: .constant(.atIdleView))
-//            NvgBar()
+            //            NvgBar()
         }
     }
 }

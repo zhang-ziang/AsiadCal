@@ -5,9 +5,9 @@
         "projTag": "Football",
         "Location": "4号体育场",
         "detail_country1": "中国",
-        "detail_name1": "中国队",
+        "detail_name1": "中国",
         "detail_country2": "日本",
-        "detail_name2": "日本队"
+        "detail_name2": "日本"
     },
     {
         "title": "决赛",
@@ -25,9 +25,9 @@
         "projTag": "Basketball",
         "Location": "篮球馆",
         "detail_country1": "中国",
-        "detail_name1": "中国队",
+        "detail_name1": "中国",
         "detail_country2": "菲律宾",
-        "detail_name2": "菲律宾队"
+        "detail_name2": "菲律宾"
     },
     {
         "title": "第二站",
