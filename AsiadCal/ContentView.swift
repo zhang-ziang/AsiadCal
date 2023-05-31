@@ -26,8 +26,8 @@ struct ContentView: View {
             recommendView(curView: $curView)
             
             NvgBar(curView: $curView)
-                .shadow(radius: 10)
-                .zIndex(100.0)
+//                .shadow(radius: 10)
+//                .zIndex(100.0)
         }
 //        .padding()
     }

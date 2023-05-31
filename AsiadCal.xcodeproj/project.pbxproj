@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0197BD152A25AF3900A250C9 /* recentEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0197BD142A25AF3900A250C9 /* recentEventView.swift */; };
 		0197BD172A263FDB00A250C9 /* matchesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0197BD162A263FDB00A250C9 /* matchesData.json */; };
+		0197BD192A27929B00A250C9 /* recommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0197BD182A27929B00A250C9 /* recommendView.swift */; };
 		019A5CE82A24C32900F2F654 /* NvgBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A5CE72A24C32900F2F654 /* NvgBar.swift */; };
 		01E14A6D2A24830A0036F19D /* giphy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A6C2A24830A0036F19D /* giphy.gif */; };
 		01E14A732A2498EE0036F19D /* events in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A722A2498EE0036F19D /* events */; };
@@ -22,7 +23,6 @@
 		F29FFD002A1CD74800F74FF7 /* AsiadCalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCFF2A1CD74800F74FF7 /* AsiadCalUITestsLaunchTests.swift */; };
 		F29FFD0D2A1CD84D00F74FF7 /* CalendarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFD0C2A1CD84D00F74FF7 /* CalendarList.swift */; };
 		F29FFD0F2A1CD86F00F74FF7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFD0E2A1CD86F00F74FF7 /* CalendarView.swift */; };
-		F2A095BA2A264C1700509A21 /* recommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A095B92A264C1700509A21 /* recommendView.swift */; };
 		F2DD731F2A244DE2001712C1 /* RugbySevens.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2DD73122A244DE2001712C1 /* RugbySevens.gif */; };
 		F2DD73202A244DE2001712C1 /* Athletics.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2DD73132A244DE2001712C1 /* Athletics.gif */; };
 		F2DD73212A244DE2001712C1 /* Swimming.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2DD73142A244DE2001712C1 /* Swimming.gif */; };
@@ -65,6 +65,7 @@
 /* Begin PBXFileReference section */
 		0197BD142A25AF3900A250C9 /* recentEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recentEventView.swift; sourceTree = "<group>"; };
 		0197BD162A263FDB00A250C9 /* matchesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matchesData.json; sourceTree = "<group>"; };
+		0197BD182A27929B00A250C9 /* recommendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recommendView.swift; sourceTree = "<group>"; };
 		019A5CE72A24C32900F2F654 /* NvgBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NvgBar.swift; sourceTree = "<group>"; };
 		01E14A6C2A24830A0036F19D /* giphy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = giphy.gif; sourceTree = "<group>"; };
 		01E14A722A2498EE0036F19D /* events */ = {isa = PBXFileReference; lastKnownFileType = text; path = events; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 		F29FFCFF2A1CD74800F74FF7 /* AsiadCalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsiadCalUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F29FFD0C2A1CD84D00F74FF7 /* CalendarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarList.swift; sourceTree = "<group>"; };
 		F29FFD0E2A1CD86F00F74FF7 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		F2A095B92A264C1700509A21 /* recommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = recommendView.swift; path = /Users/viglong/Desktop/AsiadCal/AsiadCal/recommendView.swift; sourceTree = "<absolute>"; };
 		F2DD73122A244DE2001712C1 /* RugbySevens.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RugbySevens.gif; sourceTree = "<group>"; };
 		F2DD73132A244DE2001712C1 /* Athletics.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Athletics.gif; sourceTree = "<group>"; };
 		F2DD73142A244DE2001712C1 /* Swimming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Swimming.gif; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				F2DD73322A244EFE001712C1 /* ProjListView.swift */,
 				F2DD73362A248F80001712C1 /* projDetailView.swift */,
 				F2DD73382A249C42001712C1 /* MatchCapsuleView.swift */,
-				F2A095B92A264C1700509A21 /* recommendView.swift */,
+				0197BD182A27929B00A250C9 /* recommendView.swift */,
 				F2DD73342A24521D001712C1 /* GlobalData.swift */,
 				0197BD162A263FDB00A250C9 /* matchesData.json */,
 				F29FFCE62A1CD74800F74FF7 /* Assets.xcassets */,
@@ -449,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0197BD192A27929B00A250C9 /* recommendView.swift in Sources */,
 				F2DD732F2A244E5D001712C1 /* CircleView.swift in Sources */,
 				F29FFCE52A1CD74700F74FF7 /* ContentView.swift in Sources */,
 				F2DD73372A248F80001712C1 /* projDetailView.swift in Sources */,
@@ -462,7 +463,6 @@
 				F29FFD0D2A1CD84D00F74FF7 /* CalendarList.swift in Sources */,
 				F2DD73332A244EFE001712C1 /* ProjListView.swift in Sources */,
 				F2DD73392A249C42001712C1 /* MatchCapsuleView.swift in Sources */,
-				F2A095BA2A264C1700509A21 /* recommendView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

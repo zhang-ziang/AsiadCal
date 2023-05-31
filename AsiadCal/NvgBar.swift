@@ -38,7 +38,10 @@ struct NvgBar: View {
                             .foregroundColor(.white)
                             .blendMode(.multiply)
                             .gesture(tap2ExitAddEvent)
+                        
                         ZStack{
+                            
+//                                .blendMode(.multiply)
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 350, height: 200)
                                 .foregroundColor(.white)
@@ -58,6 +61,9 @@ struct NvgBar: View {
                         } icon: {
                             
                             ZStack{
+                                RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
+                                    .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
+                                    .foregroundColor(.white)
                                 
                                 AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
                                     .playbackMode(.bounce)
@@ -134,7 +140,13 @@ struct NvgBar: View {
                                 //                                showText.toggle()
                                 //                                showNvgbar = false
                                 //                                curView = .atCompetitionView
-                                curView = .atRecommendView
+                                if(curView != .atRecommendView) {
+                                    curView = .atRecommendView
+                                }
+                                else {
+                                    curView = .atIdleView
+                                }
+                                
                             }
                         } label: {
                             Label{
