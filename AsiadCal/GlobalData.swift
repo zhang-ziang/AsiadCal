@@ -19,6 +19,8 @@ enum SportType: Decodable {
     case CanoeSlalom
     case DragonBoat
     case Swimming
+    case RugbySevens
+    case TableTennis
     case ESport
     case None
     case Amateur
@@ -52,6 +54,10 @@ enum SportType: Decodable {
                 self = .Swimming
             case "ESport":
                 self = .ESport
+            case "RugbySevens":
+                self = .RugbySevens
+            case "TableTennis":
+                self = .TableTennis
             case "Amateur":
                 self = .Amateur
             default:
@@ -82,8 +88,12 @@ enum SportType: Decodable {
             case 9:
                 self = .Swimming
             case 10:
-                self = .ESport
+                self = .RugbySevens
             case 11:
+                self = .TableTennis
+            case 12:
+                self = .ESport
+            case 13:
                 self = .Amateur
             default:
                 self = .None
@@ -112,6 +122,10 @@ enum SportType: Decodable {
                 return "DragonBoat"
             case .Swimming:
                 return "Swimming"
+            case .RugbySevens:
+                return "RugbySevens"
+            case .TableTennis:
+                return "TableTennis"
             case .ESport:
                 return "ESport"
             case .Amateur:

@@ -7,8 +7,13 @@
 
 import SwiftUI
 
+enum ShowMode{
+    case recommend
+    case inlist
+}
 struct MatchCapsuleView: View {
     @Binding var showInsert: Bool
+    var mode: ShowMode
     var match: Match
 //    var matchTitle: String
 //    var matchTime: String = ""
@@ -22,26 +27,40 @@ struct MatchCapsuleView: View {
                 .shadow(color: Color(uiColor: .systemCyan),radius: 2)
                 .frame(width: 172,height: 96)
             VStack{
+                HStack{
+                    if mode == .inlist{
+                        Text(match.title)
+                            .frame(width:80, height: 28)
+                            .font(.system(size: 22))
+                            .bold()
+                    }
+                    else if mode == .recommend{
+                        Text(match.projTag.toString())
+                            .frame(width:80, height: 28)
+                            .font(.system(size: 18))
+                            .bold()
+                    }
+                    VStack{
+                        Text("\(match.matchDate)")
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                            .font(.footnote)
+                        Text(match.Location)
+                            .font(.footnote)
+                    }
+                }
                 HStack(alignment:.center,spacing:2){
                     Rectangle()
-                        .frame(width:30, height:20)
+                        .frame(width:26, height:20)
                         .foregroundColor(.red)
                     Text(match.detail_name1 + "-" + match.detail_name2)
-                        .frame(width:90, height:30)
-                        .font(.system(size: 16))
+                        .frame(width:100, height:30)
+                        .font(.system(size: 15))
                         .bold()
                     Rectangle()
-                        .frame(width:30, height:20)
+                        .frame(width:26, height:20)
                         .foregroundColor(.blue)
                 }
-                
-                Text("\(match.matchDate)")
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .font(.footnote)
-                Text(match.Location)
-                    .font(.footnote)
-
             }
         }
         .onDrag{
@@ -68,6 +87,6 @@ struct MatchCapsuleView_Previews: PreviewProvider {
     @State static var sIn: Bool = false
     @State static var matchesData = loadMatches(filename: "matchesData")
     static var previews: some View {
-        MatchCapsuleView(showInsert: $sIn, match: matchesData[0])
+        MatchCapsuleView(showInsert: $sIn, mode: .recommend,match: matchesData[0])
     }
 }

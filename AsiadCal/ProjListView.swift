@@ -56,7 +56,6 @@ struct ProjListView: View {
 //                        circleAni.toggle()
 //                    }
 //                }
-//                Spacer(minLength: 2)
                 Text("所有比赛")
                     .font(.system(size : 40))
                     .bold()
@@ -65,14 +64,8 @@ struct ProjListView: View {
                 LazyVGrid(columns: columns,spacing:40){
                     ForEach(0...11, id: \.self) { value in
                         ProjView(name: SportType(ID: value).toString(), isAnimating: $gifAni)
-                        //                    RoundedRectangle(cornerRadius: 20)
-                        //                        .fill(Color(hue: Double.random(in: 0.4...0.6), saturation: 0.25, brightness: 0.98))
                             .frame(width:100, height:100)
                             .opacity(showProj ? 1.0:0.0)
-                        //                    .transition(.opacity)
-                        //                    .transition(.moveAndFade)
-                        //                    .transition(.move(edge: .leading))
-                        //                    .rotationEffect(.degrees(showDetail ? 90 : 0))
                             .scaleEffect(showProj ? 1.0 : 0.3)
                         //                        .animation(.easeInOut(duration: 0.3).delay(Double(value) * 0.05), value: showDetail)
                         //                        .animation(.inOrderEasyInOut(Double(value)), value: showDetail)

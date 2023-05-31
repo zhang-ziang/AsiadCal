@@ -28,8 +28,7 @@ struct projDetailView: View {
                     .onAppear(){
                         withAnimation{
                             showMatchs = true
-                        }
-                        
+                        }  
                     }
                     .onDisappear(){
                         withAnimation{
@@ -41,7 +40,7 @@ struct projDetailView: View {
                         .font(.title)
                     LazyVGrid(columns: columns, spacing: 10){
                         ForEach(0...7, id: \.self) { value in
-                            MatchCapsuleView(showInsert: $showInsert, match: matches[0])
+                            MatchCapsuleView(showInsert: $showInsert, mode:.inlist,match: matches[value])
                                 .frame(width:100, height:100)
                                 .opacity(showMatchs ? 1.0:0.0)
                                 .scaleEffect(showMatchs ? 0.9 : 0.3)
