@@ -9,41 +9,21 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct NvgBar: View {
+    
     @State var isAnimated: Bool = false
     @State var showText:   Bool = true
-    
+    @State var addEvent:   Bool = false
     @Binding var curView : NvgState
-//    @State var calendarTapped   : Bool
-//    @State var competitionTapped: Bool
-//    @State var userTapped       : Bool
     
-//    var calendarTap: some Gesture {
-//        TapGesture(count: 1)
-//            .onEnded {
-//                withAnimation{
-//                    calendarTapped = true
-//                    showText.toggle()
-//                }
-//            }
-//    }
-//    var competitionTap: some Gesture {
-//        TapGesture(count: 1)
-//            .onEnded {
-//                withAnimation{
-//                    competitionTapped = true
-//                    showText.toggle()
-//                }
-//            }
-//    }
-//    var userTap: some Gesture {
-//        TapGesture(count: 1)
-//            .onEnded {
-//                withAnimation{
-//                    userTapped = true
-//                    showText.toggle()
-//                }
-//            }
-//    }
+    var tap2ExitAddEvent : some Gesture {
+        TapGesture(count: 1)
+            .onEnded {
+                withAnimation{
+                    addEvent = false
+            }
+        }
+    }
+    
     var body: some View {
         ZStack{
 //            // used fo debug
@@ -51,14 +31,71 @@ struct NvgBar: View {
 //                Text("hello~")
 //            }
             
+
             if curView == .atIdleView {
+                ZStack{
+                    if(addEvent) {
+                        Rectangle()
+                            .foregroundColor(.white)
+                            .blendMode(.multiply)
+                            .gesture(tap2ExitAddEvent)
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 10)
+                                .frame(width: 350, height: 200)
+                                .foregroundColor(.white)
+                                .blendMode(.multiply)
+                            // TODO : Add User event view placed here plz
+                            // AddEventView ...
+                        }
+                        .zIndex(1919.0)
+                    }
+                    Button{
+                        withAnimation{
+                            addEvent = true
+                        }
+                    } label: {
+                        Label{
+                            
+                        } icon: {
+                            
+                            ZStack{
+                                
+                                AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                                    .playbackMode(.bounce)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
+                                    .opacity(0.6)
+                                    .clipShape(
+                                        RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
+                                    )
+//                                    .colorInvert()
+                                
+//                                if(!addEvent) {
+                                    Text("+")
+                                        .font(.system(size: 50))
+                                        .foregroundColor(.white)
+                                        .opacity(addEvent ? 0.0 : 1.0)
+//                                }
+                            }
+                        }
+                    }
+                    .shadow(radius: 10)
+                    .offset(x: addEvent ? 0 : 130, y: addEvent ? 0 : 250)
+    //                .frame(width: addEvent ? 350 : 70, height: addEvent ? 200 : 70)
+                    
+                }
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .zIndex(1145.0)
+                
+                
                 recentEventView()
 //                    .zIndex(0.0)
                     .transition(.move(edge: .top).combined(with: .opacity))
                 ZStack{
                     
                     AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
-                        .playbackMode(.reversedBounce)
+                        .playbackMode(.bounce)
                         .frame(width: 320, height: 60)
                         .opacity(0.6)
                         .clipShape(
