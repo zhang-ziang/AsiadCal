@@ -53,6 +53,7 @@ struct recentEventView: View {
                             }
                             
                         }
+                        .frame(width : 330)
                         .contentShape(Rectangle())
                         .onTapGesture {
                             withAnimation {
