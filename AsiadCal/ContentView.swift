@@ -13,6 +13,7 @@ enum NvgState {
     case atUserSettingView
     case atRecommendView
     case atIdleView
+    case atNone
 }
 
 struct ContentView: View {
