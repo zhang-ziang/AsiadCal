@@ -73,7 +73,9 @@ struct AddDropDelegate : DropDelegate {
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.locale = Locale.current
         let matchdate = dateFormatter.date(from: ondragmatch!.matchDate)
-        
+        if !RecommandTravelMethod.contains(where: {$0.key == ondragmatch!.Location}){
+            RecommandTravelMethod[ondragmatch!.Location] = [TravelMtd("figure.walk"), TravelMtd("car.fill")]
+        }
         subscribedAsiadEvents.append(
             AsiadEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
         )
