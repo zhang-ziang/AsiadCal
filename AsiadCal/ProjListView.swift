@@ -30,6 +30,7 @@ extension Animation{
 struct ProjListView: View {
 //    @EnvironmentObject var projdatalist : ProjDataList
     @EnvironmentObject var matchesData : MatchesData
+    @Binding var curView : NvgState
     @Binding var showInsert: Bool
     @Binding var circleAni : Bool
     @State private var showProj = false
@@ -40,66 +41,53 @@ struct ProjListView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     //    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
-        ZStack{
-            VStack(alignment: .leading, spacing: 30){
-//                Button("Press to show projects") {
-//                    withAnimation {
-//                        showProj.toggle()
-//                    }
-//                }
-//                Button("Press to show insert") {
-//                    withAnimation {
-//                        showInsert.toggle()
-//                    }
-//                }
-//                Button("Press to show circleAni") {
-//                    withAnimation {
-//                        circleAni.toggle()
-//                    }
-//                }
-                Text("所有比赛")
-                    .font(.system(size : 40))
-                    .bold()
-                    .frame(height:60)
-                
-                LazyVGrid(columns: columns,spacing:40){
-                    ForEach(0...11, id: \.self) { value in
-                        ProjView(name: SportType(ID: value).toString(), isAnimating: $gifAni)
-                            .frame(width:100, height:100)
-                            .opacity(showProj ? 1.0:0.0)
-                            .scaleEffect(showProj ? 1.0 : 0.3)
-                        //                        .animation(.easeInOut(duration: 0.3).delay(Double(value) * 0.05), value: showDetail)
-                        //                        .animation(.inOrderEasyInOut(Double(value)), value: showDetail)
-                            .animation(.randomEasyInOut(), value: showProj)
-                            .onTapGesture {
-                                curProj = value
-                                withAnimation{
-                                    showDetail.toggle()
+        if curView == .atCompetitionView{
+            ZStack{
+                VStack(alignment: .leading, spacing: 30){
+                    Text("所有比赛")
+                        .font(.system(size : 40))
+                        .bold()
+                        .frame(height:60)
+                    
+                    LazyVGrid(columns: columns,spacing:40){
+                        ForEach(0...11, id: \.self) { value in
+                            ProjView(name: SportType(ID: value).toString(), isAnimating: $gifAni)
+                                .frame(width:100, height:100)
+                                .opacity(showProj ? 1.0:0.0)
+                                .scaleEffect(showProj ? 1.0 : 0.3)
+                            //                        .animation(.easeInOut(duration: 0.3).delay(Double(value) * 0.05), value: showDetail)
+                            //                        .animation(.inOrderEasyInOut(Double(value)), value: showDetail)
+                                .animation(.randomEasyInOut(), value: showProj)
+                                .onTapGesture {
+                                    curProj = value
+                                    withAnimation{
+                                        showDetail.toggle()
+                                    }
                                 }
-                            }
-                    }
-                }
-                .zIndex(2.0)
-                .frame(width:360, height:500)
-                .onAppear{
-                    showProj = true
-                }
-                Spacer()
-            }
-            if(showDetail){
-                projDetailView(projType: SportType(ID: curProj), showInsert: $showInsert ,showMatchs: false)
-                    .zIndex(3.0)
-                    .transition(.move(edge: .bottom))
-                    .onTapGesture {
-                        withAnimation{
-                            showDetail.toggle()
-                            matchDetail.toggle()
                         }
                     }
+                    .zIndex(2.0)
+                    .frame(width:360, height:500)
+                    .onAppear{
+                        showProj = true
+                    }
+                    Spacer()
+                }
+                if(showDetail){
+                    projDetailView(projType: SportType(ID: curProj), showInsert: $showInsert ,showMatchs: false)
+                        .zIndex(3.0)
+                        .transition(.move(edge: .bottom))
+                        .onTapGesture {
+                            withAnimation{
+                                showDetail.toggle()
+                                matchDetail.toggle()
+                            }
+                        }
+                }
+                
             }
-            
+            .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
         }
-        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
     }
 }
 struct WastedDropDelegate : DropDelegate {
@@ -144,11 +132,12 @@ struct WastedDropDelegate : DropDelegate {
 struct ProjListView_Previews: PreviewProvider {
     @State static var matchesData = MatchesData()
     
+    @State static var curView: NvgState = .atCompetitionView
     @State static var showInsert = false
     @State static var circleAni  = false
     static var previews: some View {
         VStack{
-            ProjListView(showInsert: $showInsert, circleAni: $circleAni)
+            ProjListView(curView: $curView,showInsert: $showInsert, circleAni: $circleAni)
 //                .environmentObject(ProjDataList.sampleData())
                 .environmentObject(matchesData)
         }

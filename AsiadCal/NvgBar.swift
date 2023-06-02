@@ -141,8 +141,8 @@ struct NvgBar: View {
                                     //                                showText.toggle()
                                     //                                showNvgbar = false
                                     //                                curView = .atCompetitionView
-                                    if(curView != .atRecommendView) {
-                                        curView = .atRecommendView
+                                    if(curView != .atCompetitionView) {
+                                        curView = .atCompetitionView
                                     }
                                     else {
                                         curView = .atIdleView

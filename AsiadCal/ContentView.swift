@@ -27,6 +27,7 @@ struct ContentView: View {
 //                .zIndex(0.0)
             
 //                .zIndex(10.0)
+            ProjListView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni)
             recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni)
             
             NvgBar(curView: $curView)
