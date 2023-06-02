@@ -52,8 +52,10 @@ struct recentEventView: View {
                                     .font(.system(size: 15))
                             }
                             
+                            
                         }
-                        .frame(width : 330)
+//                        .frame(width : 330)
+                        .frame(width: 330)
                         .contentShape(Rectangle())
                         .onTapGesture {
                             withAnimation {
@@ -68,7 +70,7 @@ struct recentEventView: View {
             }
             .scrollContentBackground(.hidden)
         }
-//        .frame(height: 500)
+        .frame(width: 400)
 //        .offset(y: -130)
 //        .zIndex(10.0)
     }
