@@ -178,6 +178,7 @@ var RecommandTravelMethod : [String : [TravelMtd]] = [
 
 var MatchCapsuleTypeIdentifier: String = "drag_drop.item"
 
+//var GlobeBackGroundName : String = "giphy.gif"
 
 class MatchesData: ObservableObject{
     @Published var matches: [Match]

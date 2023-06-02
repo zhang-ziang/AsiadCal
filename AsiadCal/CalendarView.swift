@@ -23,6 +23,7 @@ struct CalendarView: View {
     
     @State var selectedDate: Date = Date()
     @Binding var curView: NvgState
+    @Binding var GlobeBackGroundName : String
     @State var showEvent: Bool = false
     @State var isAnimated: Bool = true
     @State var eventPos: CGSize = CGSize(width: 0, height: 0)
@@ -98,7 +99,7 @@ struct CalendarView: View {
             }
             if(curView == .atCalendarView) {
                 ZStack{
-                    AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                    AnimatedImage(name: GlobeBackGroundName, bundle: Bundle.main, isAnimating: $isAnimated)
                         .playbackMode(.bounce)
                         .frame(width: 394, height: 800)
                         .clipShape(
@@ -342,7 +343,7 @@ func isWeekend(date: Date) -> Bool {
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            CalendarView(curView: .constant(.atCalendarView))
+            CalendarView(curView: .constant(.atCalendarView), GlobeBackGroundName: .constant("giphy.gif"))
         }
     }
 

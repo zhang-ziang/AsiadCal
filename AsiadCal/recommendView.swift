@@ -20,10 +20,11 @@ struct recommendView: View {
     @State var isAnimated: Bool = true
     @State private var showMatchs = false
     @State var randomOffset:[offsetXY] = regenOffset()
+    @Binding var GlobeBackGroundName: String
     var body: some View {
         if curView == .atRecommendView{
             ZStack{
-                AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                AnimatedImage(name: GlobeBackGroundName, bundle: Bundle.main, isAnimating: $isAnimated)
                     .playbackMode(.bounce)
                     .ignoresSafeArea()
                     .frame(width: .infinity, height: .infinity)
@@ -102,7 +103,7 @@ struct recommendView_Previews: PreviewProvider {
     @State static var showInsert = false
     @State static var circleAni  = false
     static var previews: some View {
-        recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni)
+        recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni, GlobeBackGroundName: .constant("giphy.gif"))
             .environmentObject(matchesData)
     }
 }

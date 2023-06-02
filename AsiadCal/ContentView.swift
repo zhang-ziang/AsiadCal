@@ -21,16 +21,17 @@ struct ContentView: View {
     
     @State var showInsert = false
     @State var circleAni  = false
+    @State var GlobeBackGroundName : String = "giphy.gif"
     var body: some View {
         ZStack {
-            CalendarView(curView: $curView)
+            CalendarView(curView: $curView, GlobeBackGroundName: $GlobeBackGroundName)
 //                .zIndex(0.0)
             
 //                .zIndex(10.0)
             ProjListView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni)
-            recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni)
-            
-            NvgBar(curView: $curView)
+            recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni, GlobeBackGroundName: $GlobeBackGroundName)
+            UserView(curView: $curView, GlobeBackGroundName: $GlobeBackGroundName)
+            NvgBar(curView: $curView, GlobeBackGroundName: $GlobeBackGroundName)
 //                .shadow(radius: 10)
 //                .zIndex(100.0)
             CircleView(circleAni: $circleAni, circleShow: $showInsert)
