@@ -12,6 +12,7 @@ enum ShowMode{
     case inlist
 }
 struct MatchCapsuleView: View {
+    @EnvironmentObject var matchesData : MatchesData
     @Binding var showInsert: Bool
     var mode: ShowMode
     var match: Match
@@ -64,6 +65,7 @@ struct MatchCapsuleView: View {
             }
         }
         .onDrag{
+            matchesData.ondragMatch = match
             withAnimation{
                 showInsert = true
             }
@@ -122,8 +124,9 @@ struct CapsuleDropDelegate : DropDelegate {
 }
 struct MatchCapsuleView_Previews: PreviewProvider {
     @State static var sIn: Bool = false
-    @State static var matchesData = loadMatches(filename: "matchesData")
+    @State static var matchesData = MatchesData()
     static var previews: some View {
-        MatchCapsuleView(showInsert: $sIn, mode: .recommend,match: matchesData[0])
+        MatchCapsuleView(showInsert: $sIn, mode: .recommend,match: matchesData.matches[0])
+            .environmentObject(matchesData)
     }
 }

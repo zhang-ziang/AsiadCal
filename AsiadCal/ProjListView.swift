@@ -36,6 +36,7 @@ struct ProjListView: View {
     @State private var gifAni     = false
     @State private var showDetail = false
     @State private var matchDetail = false
+    @State private var curProj: Int = 0
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     //    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     var body: some View {
@@ -71,6 +72,7 @@ struct ProjListView: View {
                         //                        .animation(.inOrderEasyInOut(Double(value)), value: showDetail)
                             .animation(.randomEasyInOut(), value: showProj)
                             .onTapGesture {
+                                curProj = value
                                 withAnimation{
                                     showDetail.toggle()
                                 }
@@ -85,7 +87,7 @@ struct ProjListView: View {
                 Spacer()
             }
             if(showDetail){
-                projDetailView(matches: matchesData.matches, projTitle: "足球",showInsert: $showInsert ,showMatchs: false)
+                projDetailView(projType: SportType(ID: curProj), showInsert: $showInsert ,showMatchs: false)
                     .zIndex(3.0)
                     .transition(.move(edge: .bottom))
                     .onTapGesture {

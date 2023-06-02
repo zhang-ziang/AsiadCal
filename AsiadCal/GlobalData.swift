@@ -181,6 +181,7 @@ var MatchCapsuleTypeIdentifier: String = "drag_drop.item"
 
 class MatchesData: ObservableObject{
     @Published var matches: [Match]
+    @Published var ondragMatch: Match?
     init(){
         matches = loadMatches(filename: "matchesData")
     }

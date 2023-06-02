@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 
 struct CircleView: View {
+    @EnvironmentObject var matchesData : MatchesData
     @Binding var circleAni: Bool
     @Binding var circleShow: Bool
 //    let r: Float = 200
@@ -43,7 +44,7 @@ struct CircleView: View {
 //                .offset(x: -200,y:-75)
                 .offset(x: circleAni ? -200 : -150,y:circleAni ? -100 : -75)
         }
-        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: AddDropDelegate(circleAni: $circleAni, circleShow: $circleShow))
+        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: AddDropDelegate(circleAni: $circleAni, circleShow: $circleShow,ondragmatch:matchesData.ondragMatch))
     }
 }
 
@@ -53,6 +54,7 @@ struct AddDropDelegate : DropDelegate {
 //    let todoList: TodoList
     @Binding var circleAni: Bool
     @Binding var circleShow: Bool
+    var ondragmatch: Match?
     
     func validateDrop(info: DropInfo) -> Bool {
         print("AddDropDelegate - validateDrop() called")
@@ -64,6 +66,17 @@ struct AddDropDelegate : DropDelegate {
     
     func performDrop(info: DropInfo) -> Bool {
         print("AddDropDelegate - performDrop() called")
+        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        let matchdate = dateFormatter.date(from: ondragmatch!.matchDate)
+        
+        subscribedAsiadEvents.append(
+            AsiadEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
+        )
         withAnimation{
             circleAni = false
             circleShow = false
@@ -95,10 +108,12 @@ struct AddDropDelegate : DropDelegate {
 
 
 struct CircleView_Previews: PreviewProvider {
+    @State static var matchesData = MatchesData()
     @State static var circleAni: Bool = false
     @State static var circleShow: Bool = false
     static var previews: some View {
         CircleView(circleAni: $circleAni, circleShow: $circleShow)
+            .environmentObject(matchesData)
     }
 }
 
