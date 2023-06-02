@@ -18,17 +18,26 @@ enum NvgState {
 
 struct ContentView: View {
     @State var curView: NvgState = .atIdleView
+    
+    @State var showInsert = false
+    @State var circleAni  = false
     var body: some View {
         ZStack {
             CalendarView(curView: $curView)
 //                .zIndex(0.0)
             
 //                .zIndex(10.0)
-            recommendView(curView: $curView)
+            recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni)
             
             NvgBar(curView: $curView)
 //                .shadow(radius: 10)
 //                .zIndex(100.0)
+            CircleView(circleAni: $circleAni, circleShow: $showInsert)
+                .zIndex(4.0)
+                .opacity(showInsert ? 1.0:0.3)
+                .scaleEffect(showInsert ? 1.0 : 0.0)
+                .scaleEffect(circleAni ? 1.0 : 0.75)
+                .offset(x: showInsert ? 220:300,y:showInsert ? 300:450)
         }
 //        .padding()
     }

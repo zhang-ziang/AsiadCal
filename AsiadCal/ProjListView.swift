@@ -30,9 +30,9 @@ extension Animation{
 struct ProjListView: View {
 //    @EnvironmentObject var projdatalist : ProjDataList
     @EnvironmentObject var matchesData : MatchesData
+    @Binding var showInsert: Bool
+    @Binding var circleAni : Bool
     @State private var showProj = false
-    @State private var showInsert = false
-    @State private var circleAni  = false
     @State private var gifAni     = false
     @State private var showDetail = false
     @State private var matchDetail = false
@@ -95,12 +95,7 @@ struct ProjListView: View {
                         }
                     }
             }
-            CircleView(circleAni: $circleAni, circleShow: $showInsert)
-                .zIndex(4.0)
-                .opacity(showInsert ? 1.0:0.3)
-                .scaleEffect(showInsert ? 1.0 : 0.0)
-                .scaleEffect(circleAni ? 1.0 : 0.75)
-                .offset(x: showInsert ? 220:300,y:showInsert ? 300:450)
+            
         }
         .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
     }
@@ -146,9 +141,12 @@ struct WastedDropDelegate : DropDelegate {
 }
 struct ProjListView_Previews: PreviewProvider {
     @State static var matchesData = MatchesData()
+    
+    @State static var showInsert = false
+    @State static var circleAni  = false
     static var previews: some View {
         VStack{
-            ProjListView()
+            ProjListView(showInsert: $showInsert, circleAni: $circleAni)
 //                .environmentObject(ProjDataList.sampleData())
                 .environmentObject(matchesData)
         }

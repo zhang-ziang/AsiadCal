@@ -15,9 +15,9 @@ struct offsetXY{
 struct recommendView: View {
     @EnvironmentObject var matchesData : MatchesData
     @Binding var curView : NvgState
+    @Binding var showInsert: Bool
+    @Binding var circleAni: Bool
     @State var isAnimated: Bool = true
-    @State private var showInsert = false
-    @State private var circleAni  = false
     @State private var showMatchs = false
     @State var randomOffset:[offsetXY] = regenOffset()
     var body: some View {
@@ -46,12 +46,7 @@ struct recommendView: View {
                         .offset(x:CGFloat(randomOffset[value].x), y:CGFloat(randomOffset[value].y))
                     //                    .offset(x:0, y:0)
                 }
-                CircleView(circleAni: $circleAni, circleShow: $showInsert)
-                    .zIndex(4.0)
-                    .opacity(showInsert ? 1.0:0.3)
-                    .scaleEffect(showInsert ? 1.0 : 0.0)
-                    .scaleEffect(circleAni ? 1.0 : 0.75)
-                    .offset(x: showInsert ? 220:300,y:showInsert ? 300:450)
+                
             }.onAppear(){
                 //            randomOffset = regenOffset()
                 withAnimation{
@@ -90,8 +85,11 @@ func regenOffset() -> [offsetXY]{
 struct recommendView_Previews: PreviewProvider {
     @State static var matchesData = MatchesData()
     @State static var curView: NvgState = .atRecommendView
+    
+    @State static var showInsert = false
+    @State static var circleAni  = false
     static var previews: some View {
-        recommendView(curView: $curView)
+        recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni)
             .environmentObject(matchesData)
     }
 }
