@@ -41,7 +41,7 @@ struct NvgBar: View {
                         
                         ZStack{
                             
-//                                .blendMode(.multiply)
+                            //                                .blendMode(.multiply)
                             RoundedRectangle(cornerRadius: 10)
                                 .frame(width: 350, height: 200)
                                 .foregroundColor(.white)
@@ -99,102 +99,102 @@ struct NvgBar: View {
                     //                    .zIndex(0.0)
                         .transition(.move(edge: .top).combined(with: .opacity))
                 }
-                ZStack{
-                    
-                    AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
-                        .playbackMode(.bounce)
-                        .frame(width: 320, height: 60)
-                        .opacity(0.6)
-                        .clipShape(
-                            RoundedRectangle(cornerRadius: 30)
-                        )
-                        .offset(y: 350)
-                        .zIndex(7.0)
-                        .onAppear{
-                            isAnimated = true
-                        }
-                    HStack {
-                        Button {
-                            withAnimation{
-                                curView = .atCalendarView
-                                isAnimated = false
-                            }
-                        } label: {
-                            Label{
-                                
-                            } icon: {
-                                Image("calendarIcon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 50, height: 50)
-                                    .offset(y: 10)
-                                    .clipped()
-                                    .colorInvert()
-                                
-                            }
-                        }
-                        Spacer()
-                        Button {
-                            withAnimation{
-                                //                                competitionTapped = true
-                                //                                showText.toggle()
-                                //                                showNvgbar = false
-                                //                                curView = .atCompetitionView
-                                if(curView != .atRecommendView) {
-                                    curView = .atRecommendView
-                                }
-                                else {
-                                    curView = .atIdleView
-                                }
-                                
-                            }
-                        } label: {
-                            Label{
-                                
-                            } icon: {
-                                Image("AsiadIcon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 80, height: 50)
-                                    .offset(y: 7)
-                                    .clipped()
-                                    .colorInvert()
-                                //                                    .gesture(competitionTap)
-                            }
-                        }
+                if curView == .atIdleView || curView == .atRecommendView {
+                    ZStack{
                         
-                        Spacer()
-                        Button {
-                            withAnimation{
-                                //                                userTapped = true
-                                //                                showText.toggle()
-                                //                                showNvgbar = false
+                        AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                            .playbackMode(.bounce)
+                            .frame(width: 320, height: 60)
+                            .opacity(0.6)
+                            .clipShape(
+                                RoundedRectangle(cornerRadius: 30)
+                            )
+                            .offset(y: 350)
+                            .zIndex(7.0)
+                            .onAppear{
+                                isAnimated = true
                             }
-                        } label: {
-                            Label{
-                                
-                            } icon: {
-                                Image("userIcon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 50, height: 50)
-                                    .offset(y: 10)
-                                    .clipped()
-                                    .colorInvert()
-                                //                                    .gesture(userTap)
+                        HStack {
+                            Button {
+                                withAnimation{
+                                    curView = .atCalendarView
+                                    isAnimated = false
+                                }
+                            } label: {
+                                Label{
+                                    
+                                } icon: {
+                                    Image("calendarIcon")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50)
+                                        .offset(y: 10)
+                                        .clipped()
+                                        .colorInvert()
+                                    
+                                }
                             }
-                        }
+                            Spacer()
+                            Button {
+                                withAnimation{
+                                    //                                competitionTapped = true
+                                    //                                showText.toggle()
+                                    //                                showNvgbar = false
+                                    //                                curView = .atCompetitionView
+                                    if(curView != .atRecommendView) {
+                                        curView = .atRecommendView
+                                    }
+                                    else {
+                                        curView = .atIdleView
+                                    }
+                                    
+                                }
+                            } label: {
+                                Label{
+                                    
+                                } icon: {
+                                    Image("AsiadIcon")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 80, height: 50)
+                                        .offset(y: 7)
+                                        .clipped()
+                                        .colorInvert()
+                                    //                                    .gesture(competitionTap)
+                                }
+                            }
+                            
+                            Spacer()
+                            Button {
+                                withAnimation{
+                                    //                                userTapped = true
+                                    //                                showText.toggle()
+                                    //                                showNvgbar = false
+                                }
+                            } label: {
+                                Label{
+                                    
+                                } icon: {
+                                    Image("userIcon")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50)
+                                        .offset(y: 10)
+                                        .clipped()
+                                        .colorInvert()
+                                    //                                    .gesture(userTap)
+                                }
+                            }
+                        } // bar end
+                        .frame(width: 250)
+                        .zIndex(118.0)
+                        .offset(x: 0, y: 345)
+                        
                     }
-                    .frame(width: 250)
-                    .zIndex(118.0)
-                    .offset(x: 0, y: 345)
-                    
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
                 }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
             }
-            
         }
-        
     }
 }
 
