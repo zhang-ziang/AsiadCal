@@ -47,12 +47,25 @@ struct recommendView: View {
                     //                    .offset(x:0, y:0)
                 }
                 
-            }.onAppear(){
+            }
+            .transition(.move(edge: .trailing).combined(with: .opacity))
+            .gesture(
+                DragGesture()
+                .onEnded {
+                    if $0.translation.width > 100{
+                        withAnimation{
+                            curView = .atIdleView
+                        }
+                    }
+                }
+            )
+            .onAppear(){
                 //            randomOffset = regenOffset()
                 withAnimation{
                     showMatchs = true
                 }
-            }.onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
+            }
+            .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
         }
     }
 }

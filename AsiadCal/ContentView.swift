@@ -40,6 +40,16 @@ struct ContentView: View {
                 .scaleEffect(circleAni ? 1.0 : 0.75)
                 .offset(x: showInsert ? 220:300,y:showInsert ? 300:450)
         }
+        .gesture(
+            DragGesture()
+            .onEnded {
+                if $0.translation.width < -100 && curView == .atIdleView{
+                    withAnimation{
+                        curView = .atRecommendView
+                    }
+                }
+            }
+        )
 //        .padding()
     }
 }
