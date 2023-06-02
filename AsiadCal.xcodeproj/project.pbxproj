@@ -23,6 +23,11 @@
 		F29FFD002A1CD74800F74FF7 /* AsiadCalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCFF2A1CD74800F74FF7 /* AsiadCalUITestsLaunchTests.swift */; };
 		F29FFD0D2A1CD84D00F74FF7 /* CalendarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFD0C2A1CD84D00F74FF7 /* CalendarList.swift */; };
 		F29FFD0F2A1CD86F00F74FF7 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFD0E2A1CD86F00F74FF7 /* CalendarView.swift */; };
+		F2A095C02A2A3D5A00509A21 /* yellow.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2A095BB2A2A3D5900509A21 /* yellow.gif */; };
+		F2A095C12A2A3D5A00509A21 /* blue.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2A095BC2A2A3D5900509A21 /* blue.gif */; };
+		F2A095C22A2A3D5A00509A21 /* red.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2A095BD2A2A3D5900509A21 /* red.gif */; };
+		F2A095C32A2A3D5A00509A21 /* white.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2A095BE2A2A3D5A00509A21 /* white.gif */; };
+		F2A095C42A2A3D5A00509A21 /* green.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2A095BF2A2A3D5A00509A21 /* green.gif */; };
 		F2DD731F2A244DE2001712C1 /* RugbySevens.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2DD73122A244DE2001712C1 /* RugbySevens.gif */; };
 		F2DD73202A244DE2001712C1 /* Athletics.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2DD73132A244DE2001712C1 /* Athletics.gif */; };
 		F2DD73212A244DE2001712C1 /* Swimming.gif in Resources */ = {isa = PBXBuildFile; fileRef = F2DD73142A244DE2001712C1 /* Swimming.gif */; };
@@ -84,6 +89,11 @@
 		F29FFCFF2A1CD74800F74FF7 /* AsiadCalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsiadCalUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F29FFD0C2A1CD84D00F74FF7 /* CalendarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarList.swift; sourceTree = "<group>"; };
 		F29FFD0E2A1CD86F00F74FF7 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		F2A095BB2A2A3D5900509A21 /* yellow.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = yellow.gif; sourceTree = "<group>"; };
+		F2A095BC2A2A3D5900509A21 /* blue.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = blue.gif; sourceTree = "<group>"; };
+		F2A095BD2A2A3D5900509A21 /* red.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = red.gif; sourceTree = "<group>"; };
+		F2A095BE2A2A3D5A00509A21 /* white.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = white.gif; sourceTree = "<group>"; };
+		F2A095BF2A2A3D5A00509A21 /* green.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = green.gif; sourceTree = "<group>"; };
 		F2DD73122A244DE2001712C1 /* RugbySevens.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RugbySevens.gif; sourceTree = "<group>"; };
 		F2DD73132A244DE2001712C1 /* Athletics.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Athletics.gif; sourceTree = "<group>"; };
 		F2DD73142A244DE2001712C1 /* Swimming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Swimming.gif; sourceTree = "<group>"; };
@@ -135,6 +145,11 @@
 		01E14A6B2A24827B0036F19D /* backGround */ = {
 			isa = PBXGroup;
 			children = (
+				F2A095BC2A2A3D5900509A21 /* blue.gif */,
+				F2A095BF2A2A3D5A00509A21 /* green.gif */,
+				F2A095BD2A2A3D5900509A21 /* red.gif */,
+				F2A095BE2A2A3D5A00509A21 /* white.gif */,
+				F2A095BB2A2A3D5900509A21 /* yellow.gif */,
 				01E14A6C2A24830A0036F19D /* giphy.gif */,
 			);
 			path = backGround;
@@ -191,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				01E14A6E2A24974C0036F19D /* AsiadEvents */,
-				01E14A6B2A24827B0036F19D /* backGround */,
 				F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */,
 				F29FFCE42A1CD74700F74FF7 /* ContentView.swift */,
 				0197BD142A25AF3900A250C9 /* recentEventView.swift */,
@@ -208,6 +222,7 @@
 				F2DD73342A24521D001712C1 /* GlobalData.swift */,
 				0197BD162A263FDB00A250C9 /* matchesData.json */,
 				F29FFCE62A1CD74800F74FF7 /* Assets.xcassets */,
+				01E14A6B2A24827B0036F19D /* backGround */,
 				F2DD73112A244DE2001712C1 /* yayunGIFs */,
 				F29FFCE82A1CD74800F74FF7 /* Preview Content */,
 			);
@@ -365,6 +380,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2A095C22A2A3D5A00509A21 /* red.gif in Resources */,
 				F2DD73282A244DE2001712C1 /* TableTennis.gif in Resources */,
 				F2DD73292A244DE2001712C1 /* CyclingMTB.gif in Resources */,
 				F2DD732B2A244DE2001712C1 /* Fencing.gif in Resources */,
@@ -377,11 +393,15 @@
 				0197BD172A263FDB00A250C9 /* matchesData.json in Resources */,
 				F2DD73222A244DE2001712C1 /* Boxing.gif in Resources */,
 				F2DD73212A244DE2001712C1 /* Swimming.gif in Resources */,
+				F2A095C12A2A3D5A00509A21 /* blue.gif in Resources */,
 				F2DD732A2A244DE2001712C1 /* Trampoline.gif in Resources */,
 				F2DD73252A244DE2001712C1 /* Basketball.gif in Resources */,
 				F2DD73272A244DE2001712C1 /* CyclingRoad.gif in Resources */,
 				F29FFCE72A1CD74800F74FF7 /* Assets.xcassets in Resources */,
+				F2A095C32A2A3D5A00509A21 /* white.gif in Resources */,
+				F2A095C42A2A3D5A00509A21 /* green.gif in Resources */,
 				01E14A6D2A24830A0036F19D /* giphy.gif in Resources */,
+				F2A095C02A2A3D5A00509A21 /* yellow.gif in Resources */,
 				F2DD73262A244DE2001712C1 /* DragonBoat.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
