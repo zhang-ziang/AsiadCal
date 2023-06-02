@@ -51,6 +51,7 @@ struct recentEventView: View {
                                 )
                                     .font(.system(size: 15))
                             }
+                            .frame(width: 200)
                             
                             
                         }
