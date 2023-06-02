@@ -69,6 +69,7 @@ struct MatchCapsuleView: View {
             }
             return NSItemProvider(item: nil, typeIdentifier: MatchCapsuleTypeIdentifier)
         }
+        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: CapsuleDropDelegate(circleShow: $showInsert))
 //        .gesture(
 //            DragGesture()
 //                .onChanged { gesture in
@@ -82,7 +83,43 @@ struct MatchCapsuleView: View {
 //        .offset(offset)
     }
 }
-
+struct CapsuleDropDelegate : DropDelegate {
+    
+//    let todoStatus: TodoStatus
+//    let todoList: TodoList
+    @Binding var circleShow: Bool
+    
+    func validateDrop(info: DropInfo) -> Bool {
+        print("AddDropDelegate - validateDrop() called")
+        return true
+    }
+    
+    func performDrop(info: DropInfo) -> Bool {
+        print("AddDropDelegate - performDrop() called")
+        withAnimation{
+            circleShow = false
+        }
+        return true
+    }
+    
+    func dropEntered(info: DropInfo) {
+        print("AddDropDelegate - dropEntered() called")
+    }
+    
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        print("AddDropDelegate - dropUpdated() called")
+        return DropProposal(operation: .move)
+    }
+    
+    func dropExited(info: DropInfo) {
+        print("AddDropDelegate - dropExited() called")
+//        withAnimation{
+//            circleAni = false
+//            circleShow = false
+//        }
+    }
+    
+}
 struct MatchCapsuleView_Previews: PreviewProvider {
     @State static var sIn: Bool = false
     @State static var matchesData = loadMatches(filename: "matchesData")
