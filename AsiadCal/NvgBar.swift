@@ -31,7 +31,7 @@ struct NvgBar: View {
             //                Text("hello~")
             //            }
             
-            if curView == .atIdleView || curView == .atRecommendView {
+            if curView == .atIdleView || curView == .atRecommendView || curView == .atCompetitionView{
                 ZStack{
                     if(addEvent) {
                         Rectangle()
@@ -51,43 +51,45 @@ struct NvgBar: View {
                         }
                         .zIndex(1919.0)
                     }
-                    Button{
-                        withAnimation{
-                            addEvent = true
-                        }
-                    } label: {
-                        Label{
-                            
-                        } icon: {
-                            
-                            ZStack{
-                                RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
-                                    .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
-                                    .foregroundColor(.white)
+                    if curView == .atIdleView{
+                        Button{
+                            withAnimation{
+                                addEvent = true
+                            }
+                        } label: {
+                            Label{
                                 
-                                AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
-                                    .playbackMode(.bounce)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
-                                    .opacity(0.6)
-                                    .clipShape(
-                                        RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
-                                    )
-                                //                                    .colorInvert()
+                            } icon: {
                                 
-                                //                                if(!addEvent) {
-                                Text("+")
-                                    .font(.system(size: 50))
-                                    .foregroundColor(.white)
-                                    .opacity(addEvent ? 0.0 : 1.0)
-                                //                                }
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
+                                        .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
+                                        .foregroundColor(.white)
+                                    
+                                    AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                                        .playbackMode(.bounce)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
+                                        .opacity(0.6)
+                                        .clipShape(
+                                            RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
+                                        )
+                                    //                                    .colorInvert()
+                                    //                                if(!addEvent) {
+                                    Text("+")
+                                        .font(.system(size: 50))
+                                        .foregroundColor(.white)
+                                        .opacity(addEvent ? 0.0 : 1.0)
+                                    //                                }
+                                }
                             }
                         }
+                        .shadow(radius: 10)
+                        .offset(x: addEvent ? 0 : 130, y: addEvent ? 0 : 250)
+                        //                .frame(width: addEvent ? 350 : 70, height: addEvent ? 200 : 70)
                     }
-                    .shadow(radius: 10)
-                    .offset(x: addEvent ? 0 : 130, y: addEvent ? 0 : 250)
-                    //                .frame(width: addEvent ? 350 : 70, height: addEvent ? 200 : 70)
+                    
                     
                 }
                 .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -99,7 +101,7 @@ struct NvgBar: View {
                     //                    .zIndex(0.0)
                         .transition(.move(edge: .top).combined(with: .opacity))
                 }
-                if curView == .atIdleView || curView == .atRecommendView {
+                if curView == .atIdleView || curView == .atRecommendView || curView == .atCompetitionView{
                     ZStack{
                         
                         AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
