@@ -54,7 +54,8 @@ struct UserView: View {
             }
 //            .listRowBackground(Color(red: 0.96, green: 0, blue: 0))
             .scrollContentBackground(.hidden)
-            .frame(width: 380)
+            .frame(width: 380, height: 400)
+            .offset(y: -200)
             .transition(.opacity)
         }
     }
