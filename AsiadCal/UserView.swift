@@ -49,13 +49,14 @@ struct UserView: View {
                     
                 }
                 .navigationTitle("Setting")
+//                .frame(width: 380, height: 400)
 //                .listStyle(.automatic)
                 
             }
 //            .listRowBackground(Color(red: 0.96, green: 0, blue: 0))
             .scrollContentBackground(.hidden)
-            .frame(width: 380, height: 400)
-            .offset(y: -200)
+            .frame(width: 380, height: 600)
+            .offset(y: -100)
             .transition(.opacity)
         }
     }

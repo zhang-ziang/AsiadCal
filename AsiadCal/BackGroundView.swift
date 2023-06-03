@@ -55,15 +55,16 @@ struct BackGroundView: View {
     @Binding var GlobeBackGroundName : String
     var body: some View {
         VStack {
-            SelectColorView(gifName: "giphy.gif",   colorName: "亚运紫", textColor: .purple, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "blue.gif",    colorName: "亚运蓝", textColor: .blue, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "green.gif",   colorName: "亚运绿", textColor: .green, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "red.gif",     colorName: "亚运红", textColor: .red, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "white.gif",   colorName: "亚运灰", textColor: .gray, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "yellow.gif",  colorName: "亚运黄", textColor: .yellow, GlobeBackGroundName: $GlobeBackGroundName)
+            SelectColorView(gifName: "giphy.gif",   colorName: "虹韵紫", textColor: .purple, GlobeBackGroundName: $GlobeBackGroundName)
+            SelectColorView(gifName: "blue.gif",    colorName: "水光蓝", textColor: .blue, GlobeBackGroundName: $GlobeBackGroundName)
+            SelectColorView(gifName: "green.gif",   colorName: "湖山绿", textColor: .green, GlobeBackGroundName: $GlobeBackGroundName)
+            SelectColorView(gifName: "red.gif",     colorName: "映日红", textColor: .red, GlobeBackGroundName: $GlobeBackGroundName)
+            SelectColorView(gifName: "white.gif",   colorName: "水墨白", textColor: .gray, GlobeBackGroundName: $GlobeBackGroundName)
+            SelectColorView(gifName: "yellow.gif",  colorName: "月桂黄", textColor: .yellow, GlobeBackGroundName: $GlobeBackGroundName)
         }
 //        .transition(.move(edge: .bottom).combined(with: .opacity))
-        .offset(y: -120)
+//        .offset(y: 20)
+        
     }
 }
 
