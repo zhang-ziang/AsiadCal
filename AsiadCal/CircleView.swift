@@ -16,6 +16,7 @@ struct CircleView: View {
 //    let r: Float = 200
     //123
 //    let theta: Float = 2*3.14159 * 200.0/360.0
+    @State var nextEventID: Int = 0
     var body: some View {
         ZStack{
             Circle()
@@ -23,14 +24,16 @@ struct CircleView: View {
                 .opacity(0.8)
                 .frame(width:600, height:600, alignment: .bottom)
                 .shadow(color: Color(white: 0.1, opacity: 0.9),radius: 10)
-            Text("游泳比赛\n6月18日\n水立方")
+//            Text("游泳比赛\n6月18日\n水立方")
+            Text(GetFormatText(id: nextEventID))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
                 .offset(x:circleAni ? -75 : -100,
                         y:circleAni ? -220 : -200)
-            Text("山地自行车\n6月18日\n玉泉北门")
+//            Text("山地自行车\n6月18日\n玉泉北门")
+            Text(GetFormatText(id: nextEventID-1))
                 .foregroundColor(.white)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
@@ -46,7 +49,26 @@ struct CircleView: View {
 //                .offset(x: -200,y:-75)
                 .offset(x: circleAni ? -200 : -150,y:circleAni ? -100 : -75)
         }
-        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: AddDropDelegate(circleAni: $circleAni, circleShow: $circleShow,ondragmatch:matchesData.ondragMatch))
+        .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: AddDropDelegate(circleAni: $circleAni, circleShow: $circleShow,ondragmatch:matchesData.ondragMatch, nextEventID: $nextEventID))
+    }
+    
+    func GetFormatText(id: Int)->String{
+        if subscribedAsiadEvents.count == 0{
+            return "..."
+        }
+        if id<0{
+            return "..."
+        }
+        if id>=subscribedAsiadEvents.count{
+            return "..."
+        }
+//        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        let month = calendar.component(.month, from: subscribedAsiadEvents[id].EventDate)
+        let day = calendar.component(.day, from: subscribedAsiadEvents[id].EventDate)
+        return subscribedAsiadEvents[id].EventName + "\n"
+             + String(month) + "月" + String(day) + "日\n"
+             + subscribedAsiadEvents[id].EventPos
     }
 }
 
@@ -57,9 +79,18 @@ struct AddDropDelegate : DropDelegate {
     @Binding var circleAni: Bool
     @Binding var circleShow: Bool
     var ondragmatch: Match?
-    
+    @Binding var nextEventID: Int
+//    var matchdate: Date = Date.now
     func validateDrop(info: DropInfo) -> Bool {
         print("AddDropDelegate - validateDrop() called")
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+        let matchdate = dateFormatter.date(from: ondragmatch!.matchDate)!
+        
+        nextEventID = FindNextEventID(EventDate: matchdate)
         withAnimation{
             circleAni = true
         }
@@ -69,20 +100,16 @@ struct AddDropDelegate : DropDelegate {
     func performDrop(info: DropInfo) -> Bool {
         print("AddDropDelegate - performDrop() called")
         let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        
         dateFormatter.dateFormat = "yyyy/MM/dd"
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.locale = Locale.current
-        let matchdate = dateFormatter.date(from: ondragmatch!.matchDate)
+        let matchdate = dateFormatter.date(from: ondragmatch!.matchDate)!
+        
         if !RecommandTravelMethod.contains(where: {$0.key == ondragmatch!.Location}){
             RecommandTravelMethod[ondragmatch!.Location] = [TravelMtd("figure.walk"), TravelMtd("car.fill")]
         }
-//        subscribedAsiadEvents.append(
-//            AsiadEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
-//        )
-//        subscribedAsiadEvents.sort{$0.EventDate < $1.EventDate}
-        AddEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
+
+        AddEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
         withAnimation{
             circleAni = false
             circleShow = false

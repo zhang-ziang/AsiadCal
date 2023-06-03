@@ -179,6 +179,18 @@ func AddEvent(EventName: String, EventDate: Date, EventType: SportType, EventPos
     subscribedAsiadEvents.sort{$0.EventDate < $1.EventDate}
 }
 
+func FindNextEventID(EventDate: Date)->Int{
+//    var i:Int = 0
+    if subscribedAsiadEvents.count == 0{
+        return 0
+    }
+    for i in 0..<subscribedAsiadEvents.count{
+        if subscribedAsiadEvents[i].EventDate > EventDate{
+            return i
+        }
+    }
+    return subscribedAsiadEvents.count
+}
 
 
 struct TravelMtd : Identifiable {
