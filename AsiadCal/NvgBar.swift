@@ -14,7 +14,7 @@ struct NvgBar: View {
     @State var showText:   Bool = true
     @State var addEvent:   Bool = false
     @Binding var curView : NvgState
-    
+    @Binding var GlobeBackGroundName : String
     var tap2ExitAddEvent : some Gesture {
         TapGesture(count: 1)
             .onEnded {
@@ -31,7 +31,7 @@ struct NvgBar: View {
             //                Text("hello~")
             //            }
             
-            if curView == .atIdleView || curView == .atRecommendView || curView == .atCompetitionView{
+            if curView == .atIdleView || curView == .atRecommendView || curView == .atCompetitionView || curView == .atUserSettingView {
                 ZStack{
                     if(addEvent) {
                         Rectangle()
@@ -66,7 +66,7 @@ struct NvgBar: View {
                                         .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
                                         .foregroundColor(.white)
                                     
-                                    AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                                    AnimatedImage(name: GlobeBackGroundName, bundle: Bundle.main, isAnimating: $isAnimated)
                                         .playbackMode(.bounce)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
@@ -101,10 +101,10 @@ struct NvgBar: View {
                     //                    .zIndex(0.0)
                         .transition(.move(edge: .top).combined(with: .opacity))
                 }
-                if curView == .atIdleView || curView == .atRecommendView || curView == .atCompetitionView{
+                if (curView == .atIdleView || curView == .atRecommendView || curView == .atCompetitionView || curView == .atUserSettingView) {
                     ZStack{
                         
-                        AnimatedImage(name: "giphy.gif", bundle: Bundle.main, isAnimating: $isAnimated)
+                        AnimatedImage(name: GlobeBackGroundName, bundle: Bundle.main, isAnimating: $isAnimated)
                             .playbackMode(.bounce)
                             .frame(width: 320, height: 60)
                             .opacity(0.6)
@@ -119,8 +119,15 @@ struct NvgBar: View {
                         HStack {
                             Button {
                                 withAnimation{
-                                    curView = .atCalendarView
-                                    isAnimated = false
+                                    if(curView != .atIdleView) {
+                                        curView = .atIdleView
+                                        isAnimated = true
+                                    }
+                                    else {
+                                        curView = .atCalendarView
+                                        isAnimated = false
+                                    }
+                                    
                                 }
                             } label: {
                                 Label{
@@ -169,9 +176,7 @@ struct NvgBar: View {
                             Spacer()
                             Button {
                                 withAnimation{
-                                    //                                userTapped = true
-                                    //                                showText.toggle()
-                                    //                                showNvgbar = false
+                                    curView = .atUserSettingView
                                 }
                             } label: {
                                 Label{
@@ -207,7 +212,7 @@ struct NvgBar_Previews: PreviewProvider {
     
     static var previews: some View {
         VStack{
-            NvgBar(curView: .constant(.atIdleView))
+            NvgBar(curView: .constant(.atIdleView), GlobeBackGroundName: .constant("giphy.gif"))
             //            NvgBar()
         }
     }

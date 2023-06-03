@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0148DF2E2A2A3F14008D3993 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148DF2D2A2A3F14008D3993 /* UserView.swift */; };
+		0148DF302A2A4A1F008D3993 /* BackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148DF2F2A2A4A1F008D3993 /* BackGroundView.swift */; };
 		0197BD152A25AF3900A250C9 /* recentEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0197BD142A25AF3900A250C9 /* recentEventView.swift */; };
 		0197BD172A263FDB00A250C9 /* matchesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 0197BD162A263FDB00A250C9 /* matchesData.json */; };
 		0197BD192A27929B00A250C9 /* recommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0197BD182A27929B00A250C9 /* recommendView.swift */; };
@@ -68,6 +70,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0148DF2D2A2A3F14008D3993 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		0148DF2F2A2A4A1F008D3993 /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
 		0197BD142A25AF3900A250C9 /* recentEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = recentEventView.swift; sourceTree = "<group>"; };
 		0197BD162A263FDB00A250C9 /* matchesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matchesData.json; sourceTree = "<group>"; };
 		0197BD182A27929B00A250C9 /* recommendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recommendView.swift; sourceTree = "<group>"; };
@@ -209,6 +213,8 @@
 				F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */,
 				F29FFCE42A1CD74700F74FF7 /* ContentView.swift */,
 				0197BD142A25AF3900A250C9 /* recentEventView.swift */,
+				0148DF2D2A2A3F14008D3993 /* UserView.swift */,
+				0148DF2F2A2A4A1F008D3993 /* BackGroundView.swift */,
 				F29FFD0C2A1CD84D00F74FF7 /* CalendarList.swift */,
 				F29FFD0E2A1CD86F00F74FF7 /* CalendarView.swift */,
 				019A5CE72A24C32900F2F654 /* NvgBar.swift */,
@@ -476,8 +482,10 @@
 				F29FFCE32A1CD74700F74FF7 /* AsiadCalApp.swift in Sources */,
 				F29FFD0F2A1CD86F00F74FF7 /* CalendarView.swift in Sources */,
 				F2DD732D2A244E10001712C1 /* ProjView.swift in Sources */,
+				0148DF2E2A2A3F14008D3993 /* UserView.swift in Sources */,
 				0197BD152A25AF3900A250C9 /* recentEventView.swift in Sources */,
 				019A5CE82A24C32900F2F654 /* NvgBar.swift in Sources */,
+				0148DF302A2A4A1F008D3993 /* BackGroundView.swift in Sources */,
 				F2DD73312A244ED1001712C1 /* ProjData.swift in Sources */,
 				F2DD73352A24521D001712C1 /* GlobalData.swift in Sources */,
 				F29FFD0D2A1CD84D00F74FF7 /* CalendarList.swift in Sources */,
