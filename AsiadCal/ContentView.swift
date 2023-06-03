@@ -44,7 +44,7 @@ struct ContentView: View {
         .gesture(
             DragGesture()
             .onEnded {
-                if $0.translation.width < -100 && curView == .atIdleView{
+                if $0.translation.width > 100 && curView == .atIdleView{
                     withAnimation{
                         curView = .atRecommendView
                     }

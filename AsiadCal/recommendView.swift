@@ -20,6 +20,10 @@ struct recommendView: View {
     @State var isAnimated: Bool = true
     @State private var showMatchs = false
     @State var randomOffset:[offsetXY] = regenOffset()
+    
+//    @State var randomMatch:[Int] = [0,1,2,3,4,5]
+    
+    @State var randomMatch:[Int] = regenMatch(matchCount: 10)
     @Binding var GlobeBackGroundName: String
     var body: some View {
         if curView == .atRecommendView{
@@ -38,7 +42,7 @@ struct recommendView: View {
                         isAnimated = true
                     }
                 ForEach(0..<randomOffset.count, id: \.self) { value in
-                    MatchCapsuleView(showInsert: $showInsert,mode:.recommend, match: matchesData.matches[value])
+                    MatchCapsuleView(showInsert: $showInsert,mode:.recommend, match: matchesData.matches[randomMatch[value]])
                         .zIndex(0.01*Double(value)+0.1)
                         .frame(width:100, height:100)
                         .opacity(showMatchs ? 0.9:0.0)
@@ -49,11 +53,11 @@ struct recommendView: View {
                 }
                 
             }
-            .transition(.move(edge: .trailing).combined(with: .opacity))
+            .transition(.move(edge: .leading).combined(with: .opacity))
             .gesture(
                 DragGesture()
                 .onEnded {
-                    if $0.translation.width > 100{
+                    if $0.translation.width < -100{
                         withAnimation{
                             curView = .atIdleView
                         }
@@ -61,14 +65,38 @@ struct recommendView: View {
                 }
             )
             .onAppear(){
-                //            randomOffset = regenOffset()
+                randomOffset = regenOffset()
+                randomMatch = regenMatch(matchCount: matchesData.matches.count)
+                withAnimation{
+                    showMatchs = false
+                }
                 withAnimation{
                     showMatchs = true
+                }
+            }
+            .onDisappear(){
+                withAnimation{
+                    showMatchs = false
                 }
             }
             .onDrop(of: [MatchCapsuleTypeIdentifier], delegate: WastedDropDelegate(circleAni: $circleAni, circleShow: $showInsert))
         }
     }
+}
+
+func regenMatch(matchCount:Int) -> [Int]{
+    var ids:[Int] = []
+    for i in 0..<matchCount{
+        ids.append(i)
+    }
+    var ranids: [Int] = []
+    for _ in 0...5 {
+        let id = Int.random(in: 0..<ids.count)
+        
+        ranids.append(ids[id])
+        ids.remove(at: id)
+    }
+    return ranids
 }
 
 func regenOffset() -> [offsetXY]{
