@@ -103,7 +103,7 @@ struct recommendView_Previews: PreviewProvider {
     @State static var showInsert = false
     @State static var circleAni  = false
     static var previews: some View {
-        recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni, GlobeBackGroundName: .constant("giphy.gif"))
+        recommendView(curView: $curView, showInsert: $showInsert, circleAni: $circleAni, GlobeBackGroundName: .constant("purple.gif"))
             .environmentObject(matchesData)
     }
 }

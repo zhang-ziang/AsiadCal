@@ -12,12 +12,13 @@ struct CircleView: View {
     @EnvironmentObject var matchesData : MatchesData
     @Binding var circleAni: Bool
     @Binding var circleShow: Bool
+    @Binding var GlobeBackGroundName: String
 //    let r: Float = 200
 //    let theta: Float = 2*3.14159 * 200.0/360.0
     var body: some View {
         ZStack{
             Circle()
-                .foregroundColor(circleAni ? Color(uiColor: .systemPurple):Color(uiColor: .black))
+                .foregroundColor(circleAni ? Color(uiColor: ThemeColor[GlobeBackGroundName]!) : Color(uiColor: .black))
                 .opacity(0.8)
                 .frame(width:600, height:600, alignment: .bottom)
                 .shadow(color: Color(white: 0.1, opacity: 0.9),radius: 10)
@@ -113,8 +114,9 @@ struct CircleView_Previews: PreviewProvider {
     @State static var matchesData = MatchesData()
     @State static var circleAni: Bool = false
     @State static var circleShow: Bool = false
+    @State static var GlobeBackGroundName : String = "purple.gif"
     static var previews: some View {
-        CircleView(circleAni: $circleAni, circleShow: $circleShow)
+        CircleView(circleAni: $circleAni, circleShow: $circleShow, GlobeBackGroundName: $GlobeBackGroundName)
             .environmentObject(matchesData)
     }
 }

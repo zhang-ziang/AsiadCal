@@ -150,6 +150,15 @@ var Event2Color : [SportType : UIColor] = [
     .ESport     : .purple
 ]
 
+var ThemeColor : [String : UIColor] = [
+    "purple.gif"  : .purple ,
+    "yellow.gif"  : .yellow ,
+    "red.gif"     : .red ,
+    "blue.gif"    : .blue ,
+    "green.gif"   : .green ,
+    "white.gif"   : .gray
+]
+
 struct AsiadEvent: Identifiable {
     var id = UUID()
     var EventName : String

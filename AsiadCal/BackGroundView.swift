@@ -55,7 +55,7 @@ struct BackGroundView: View {
     @Binding var GlobeBackGroundName : String
     var body: some View {
         VStack {
-            SelectColorView(gifName: "giphy.gif",   colorName: "虹韵紫", textColor: .purple, GlobeBackGroundName: $GlobeBackGroundName)
+            SelectColorView(gifName: "purple.gif",   colorName: "虹韵紫", textColor: .purple, GlobeBackGroundName: $GlobeBackGroundName)
             SelectColorView(gifName: "blue.gif",    colorName: "水光蓝", textColor: .blue, GlobeBackGroundName: $GlobeBackGroundName)
             SelectColorView(gifName: "green.gif",   colorName: "湖山绿", textColor: .green, GlobeBackGroundName: $GlobeBackGroundName)
             SelectColorView(gifName: "red.gif",     colorName: "映日红", textColor: .red, GlobeBackGroundName: $GlobeBackGroundName)
@@ -70,6 +70,6 @@ struct BackGroundView: View {
 
 struct BackGroundView_Previews: PreviewProvider {
     static var previews: some View {
-        BackGroundView(GlobeBackGroundName: .constant("giphy.gif"))
+        BackGroundView(GlobeBackGroundName: .constant("purple.gif"))
     }
 }
