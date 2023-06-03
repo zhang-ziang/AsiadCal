@@ -23,8 +23,8 @@ struct SelectColorView : View {
             
         } label: {
             ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .frame(width: 330, height: 60)
+                RoundedRectangle(cornerRadius: 25)
+                    .frame(width: 330, height: 50)
                     .foregroundColor(bkgColor)
                 HStack{
                     AnimatedImage(name: gifName, bundle: Bundle.main, isAnimating: $isAnimated)
@@ -44,8 +44,10 @@ struct SelectColorView : View {
                 }
                 .frame(width: 300)
             }
+//            .frame(height: 60)
             
         }
+        
     }
 }
 
@@ -55,15 +57,20 @@ struct BackGroundView: View {
     @Binding var GlobeBackGroundName : String
     var body: some View {
         VStack {
-            SelectColorView(gifName: "purple.gif",   colorName: "虹韵紫", textColor: .purple, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "blue.gif",    colorName: "水光蓝", textColor: .blue, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "green.gif",   colorName: "湖山绿", textColor: .green, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "red.gif",     colorName: "映日红", textColor: .red, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "white.gif",   colorName: "水墨白", textColor: .gray, GlobeBackGroundName: $GlobeBackGroundName)
-            SelectColorView(gifName: "yellow.gif",  colorName: "月桂黄", textColor: .yellow, GlobeBackGroundName: $GlobeBackGroundName)
+//            List{
+                SelectColorView(gifName: "purple.gif",   colorName: "虹韵紫", textColor: .purple, GlobeBackGroundName: $GlobeBackGroundName)
+                SelectColorView(gifName: "blue.gif",    colorName: "水光蓝", textColor: .blue, GlobeBackGroundName: $GlobeBackGroundName)
+                SelectColorView(gifName: "green.gif",   colorName: "湖山绿", textColor: .green, GlobeBackGroundName: $GlobeBackGroundName)
+                SelectColorView(gifName: "red.gif",     colorName: "映日红", textColor: .red, GlobeBackGroundName: $GlobeBackGroundName)
+                SelectColorView(gifName: "white.gif",   colorName: "水墨白", textColor: .gray, GlobeBackGroundName: $GlobeBackGroundName)
+                SelectColorView(gifName: "yellow.gif",  colorName: "月桂黄", textColor: .yellow, GlobeBackGroundName: $GlobeBackGroundName)
+//            }
+//            .contentShape(Rectangle())
+////            .environment(\.defaultMinListRowHeight, 30)
+//            .scrollContentBackground(.hidden)
         }
 //        .transition(.move(edge: .bottom).combined(with: .opacity))
-//        .offset(y: 20)
+        .offset(y: -20)
         
     }
 }
