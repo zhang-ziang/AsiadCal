@@ -14,6 +14,7 @@ struct CircleView: View {
     @Binding var circleShow: Bool
     @Binding var GlobeBackGroundName: String
 //    let r: Float = 200
+    //123
 //    let theta: Float = 2*3.14159 * 200.0/360.0
     var body: some View {
         ZStack{
