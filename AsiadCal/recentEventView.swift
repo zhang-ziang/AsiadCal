@@ -67,6 +67,7 @@ struct recentEventView: View {
                         
                     }
                 }
+                .onDelete(perform: delete)
                 .listRowBackground(Color(red: 0.96, green: 0.96, blue: 0.96))
             }
             .scrollContentBackground(.hidden)
@@ -74,6 +75,11 @@ struct recentEventView: View {
         .frame(width: 400)
 //        .offset(y: -130)
 //        .zIndex(10.0)
+    }
+    
+    func delete(at offsets: IndexSet) {
+//        users.remove(atOffsets: offsets)
+        subscribedAsiadEvents.remove(atOffsets: offsets)
     }
 }
 
