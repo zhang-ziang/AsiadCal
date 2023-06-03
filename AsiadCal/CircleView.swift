@@ -78,11 +78,11 @@ struct AddDropDelegate : DropDelegate {
         if !RecommandTravelMethod.contains(where: {$0.key == ondragmatch!.Location}){
             RecommandTravelMethod[ondragmatch!.Location] = [TravelMtd("figure.walk"), TravelMtd("car.fill")]
         }
-        subscribedAsiadEvents.append(
-            AsiadEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
-        )
-        subscribedAsiadEvents.sort{$0.EventDate < $1.EventDate}
-//        subscribedAsiadEvents.sort
+//        subscribedAsiadEvents.append(
+//            AsiadEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
+//        )
+//        subscribedAsiadEvents.sort{$0.EventDate < $1.EventDate}
+        AddEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
         withAnimation{
             circleAni = false
             circleShow = false
