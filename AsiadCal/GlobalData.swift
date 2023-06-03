@@ -172,6 +172,15 @@ var subscribedAsiadEvents : [AsiadEvent] = [
     AsiadEvent(EventName: "足球预选赛", EventDate: Date.now.addingTimeInterval(86400 * 4), EventType: .Football, EventPos: "杭州奥体中心")
 ]
 
+func AddEvent(EventName: String, EventDate: Date, EventType: SportType, EventPos: String){
+    subscribedAsiadEvents.append(
+        AsiadEvent(EventName: EventName, EventDate: EventDate, EventType: EventType, EventPos: EventPos)
+    )
+    subscribedAsiadEvents.sort{$0.EventDate < $1.EventDate}
+}
+
+
+
 struct TravelMtd : Identifiable {
     var id = UUID()
     var mtdName : String
@@ -181,6 +190,7 @@ struct TravelMtd : Identifiable {
 }
 
 var RecommandTravelMethod : [String : [TravelMtd]] = [
+    "" : [],
     "中国杭州电竞中心" : [TravelMtd("figure.walk"), TravelMtd("car.fill")],
     "杭州奥体中心"    : [TravelMtd("figure.walk"), TravelMtd("bus.fill"), TravelMtd("tram.fill")]
 ]
@@ -192,8 +202,18 @@ var MatchCapsuleTypeIdentifier: String = "drag_drop.item"
 class MatchesData: ObservableObject{
     @Published var matches: [Match]
     @Published var ondragMatch: Match?
+    var subscribedAsiadEvents : [AsiadEvent] = [
+        AsiadEvent(EventName: "英雄联盟表演赛", EventDate: Date.now.addingTimeInterval(86400 * 3), EventType: .ESport, EventPos: "中国杭州电竞中心"),
+        AsiadEvent(EventName: "足球预选赛", EventDate: Date.now.addingTimeInterval(86400 * 4), EventType: .Football, EventPos: "杭州奥体中心")
+    ]
     init(){
         matches = loadMatches(filename: "matchesData")
+    }
+    func AddEvent(EventName: String, EventDate: Date, EventType: SportType, EventPos: String){
+        self.subscribedAsiadEvents.append(
+            AsiadEvent(EventName: EventName, EventDate: EventDate, EventType: EventType, EventPos: EventPos)
+        )
+        self.subscribedAsiadEvents.sort{$0.EventDate < $1.EventDate}
     }
 //    init(){
 //        var match: Match()

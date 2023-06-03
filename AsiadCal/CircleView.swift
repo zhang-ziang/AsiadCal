@@ -81,6 +81,8 @@ struct AddDropDelegate : DropDelegate {
         subscribedAsiadEvents.append(
             AsiadEvent(EventName: ondragmatch!.projTag.toString()+ondragmatch!.title, EventDate: matchdate!, EventType: ondragmatch!.projTag, EventPos: ondragmatch!.Location)
         )
+        subscribedAsiadEvents.sort{$0.EventDate < $1.EventDate}
+//        subscribedAsiadEvents.sort
         withAnimation{
             circleAni = false
             circleShow = false
