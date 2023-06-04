@@ -22,6 +22,7 @@
 		F299BE012A2C730A00F7BE20 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299BE002A2C730A00F7BE20 /* IntentHandler.swift */; };
 		F299BE052A2C730A00F7BE20 /* CalSiri.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F299BDFC2A2C730A00F7BE20 /* CalSiri.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F299BE0A2A2C734F00F7BE20 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F299BDF62A2C71D200F7BE20 /* Intents.intentdefinition */; };
+		F299BE0B2A2C74BF00F7BE20 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2DD73342A24521D001712C1 /* GlobalData.swift */; };
 		F29FFCE32A1CD74700F74FF7 /* AsiadCalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */; };
 		F29FFCE52A1CD74700F74FF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCE42A1CD74700F74FF7 /* ContentView.swift */; };
 		F29FFCE72A1CD74800F74FF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29FFCE62A1CD74800F74FF7 /* Assets.xcassets */; };
@@ -564,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F299BE0B2A2C74BF00F7BE20 /* GlobalData.swift in Sources */,
 				F299BE0A2A2C734F00F7BE20 /* Intents.intentdefinition in Sources */,
 				F299BE012A2C730A00F7BE20 /* IntentHandler.swift in Sources */,
 			);

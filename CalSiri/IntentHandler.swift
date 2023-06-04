@@ -11,12 +11,15 @@ extension IntentHandler: GetRecentEventsIntentHandling{
 //        }
 //        number = amount
         let response : GetRecentEventsIntentResponse
-        let userActivity = NSUserActivity(activityType: NSStringFromClass(GetRecentEventsIntent.self))
+//        let userActivity = NSUserActivity(activityType: NSStringFromClass(GetRecentEventsIntent.self))
 //        response.userActivity = user
 //        print(number)
 //        response = ReceiveSuccessIntentResponse(code: .success, userActivity: userActivity)
 //        completion(INRequestPaymentIntentResponse(code: .success, userActivity: nil))
-        response = GetRecentEventsIntentResponse.success(detail: "some detail here")
+        let detail = GetRecentEventsDetail()
+        
+        response = GetRecentEventsIntentResponse.success(detail: detail)
+        print(detail)
         completion(response)
     }
 }

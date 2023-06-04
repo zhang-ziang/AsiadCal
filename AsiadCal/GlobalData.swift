@@ -172,6 +172,16 @@ var subscribedAsiadEvents : [AsiadEvent] = [
     AsiadEvent(EventName: "足球预选赛", EventDate: Date.now.addingTimeInterval(86400 * 4), EventType: .Football, EventPos: "杭州奥体中心")
 ]
 
+func GetRecentEventsDetail()->String{
+    let nextEventId = FindNextEventID(EventDate: Date.now)
+    let nextEvent = subscribedAsiadEvents[nextEventId]
+    let calendar = Calendar.current
+    let month = calendar.component(.month, from: nextEvent.EventDate)
+    let day = calendar.component(.day, from: nextEvent.EventDate)
+    let detail = String(month) + "月" + String(day) + "日" + nextEvent.EventPos + nextEvent.EventName
+    return detail
+}
+
 func AddEvent(EventName: String, EventDate: Date, EventType: SportType, EventPos: String){
     subscribedAsiadEvents.append(
         AsiadEvent(EventName: EventName, EventDate: EventDate, EventType: EventType, EventPos: EventPos)
