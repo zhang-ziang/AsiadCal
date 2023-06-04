@@ -17,6 +17,11 @@
 		01E14A6D2A24830A0036F19D /* purple.gif in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A6C2A24830A0036F19D /* purple.gif */; };
 		01E14A732A2498EE0036F19D /* events in Resources */ = {isa = PBXBuildFile; fileRef = 01E14A722A2498EE0036F19D /* events */; };
 		DB0905BEB43F6D9EFFC6F9E4 /* Pods_AsiadCal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A47C53BFD444C1FD5B1D06 /* Pods_AsiadCal.framework */; };
+		F299BDF72A2C71D200F7BE20 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F299BDF62A2C71D200F7BE20 /* Intents.intentdefinition */; };
+		F299BDFE2A2C730A00F7BE20 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F299BDFD2A2C730A00F7BE20 /* Intents.framework */; };
+		F299BE012A2C730A00F7BE20 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F299BE002A2C730A00F7BE20 /* IntentHandler.swift */; };
+		F299BE052A2C730A00F7BE20 /* CalSiri.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F299BDFC2A2C730A00F7BE20 /* CalSiri.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F299BE0A2A2C734F00F7BE20 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F299BDF62A2C71D200F7BE20 /* Intents.intentdefinition */; };
 		F29FFCE32A1CD74700F74FF7 /* AsiadCalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */; };
 		F29FFCE52A1CD74700F74FF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29FFCE42A1CD74700F74FF7 /* ContentView.swift */; };
 		F29FFCE72A1CD74800F74FF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F29FFCE62A1CD74800F74FF7 /* Assets.xcassets */; };
@@ -54,6 +59,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F299BE032A2C730A00F7BE20 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F29FFCD72A1CD74700F74FF7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F299BDFB2A2C730A00F7BE20;
+			remoteInfo = CalSiri;
+		};
 		F29FFCF02A1CD74800F74FF7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F29FFCD72A1CD74700F74FF7 /* Project object */;
@@ -70,6 +82,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F299BE092A2C730A00F7BE20 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F299BE052A2C730A00F7BE20 /* CalSiri.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0148DF2D2A2A3F14008D3993 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		0148DF2F2A2A4A1F008D3993 /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
@@ -83,6 +109,11 @@
 		3460C89AFE68EAF7FF18B341 /* Pods-AsiadCal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsiadCal.debug.xcconfig"; path = "Target Support Files/Pods-AsiadCal/Pods-AsiadCal.debug.xcconfig"; sourceTree = "<group>"; };
 		74A47C53BFD444C1FD5B1D06 /* Pods_AsiadCal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsiadCal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F9BDAB82CF89C04988B940 /* Pods-AsiadCal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsiadCal.release.xcconfig"; path = "Target Support Files/Pods-AsiadCal/Pods-AsiadCal.release.xcconfig"; sourceTree = "<group>"; };
+		F299BDF62A2C71D200F7BE20 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		F299BDFC2A2C730A00F7BE20 /* CalSiri.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CalSiri.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F299BDFD2A2C730A00F7BE20 /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		F299BE002A2C730A00F7BE20 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		F299BE022A2C730A00F7BE20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F29FFCDF2A1CD74700F74FF7 /* AsiadCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsiadCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsiadCalApp.swift; sourceTree = "<group>"; };
 		F29FFCE42A1CD74700F74FF7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +131,8 @@
 		F2A095BD2A2A3D5900509A21 /* red.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = red.gif; sourceTree = "<group>"; };
 		F2A095BE2A2A3D5A00509A21 /* white.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = white.gif; sourceTree = "<group>"; };
 		F2A095BF2A2A3D5A00509A21 /* green.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = green.gif; sourceTree = "<group>"; };
+		F2A095C62A2B8D7900509A21 /* AsiadCal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AsiadCal.entitlements; sourceTree = "<group>"; };
+		F2A095C92A2B930800509A21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F2DD73122A244DE2001712C1 /* RugbySevens.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = RugbySevens.gif; sourceTree = "<group>"; };
 		F2DD73132A244DE2001712C1 /* Athletics.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Athletics.gif; sourceTree = "<group>"; };
 		F2DD73142A244DE2001712C1 /* Swimming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Swimming.gif; sourceTree = "<group>"; };
@@ -123,6 +156,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F299BDF92A2C730A00F7BE20 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F299BDFE2A2C730A00F7BE20 /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F29FFCDC2A1CD74700F74FF7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				74A47C53BFD444C1FD5B1D06 /* Pods_AsiadCal.framework */,
+				F299BDFD2A2C730A00F7BE20 /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -186,12 +228,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F299BDFF2A2C730A00F7BE20 /* CalSiri */ = {
+			isa = PBXGroup;
+			children = (
+				F299BE002A2C730A00F7BE20 /* IntentHandler.swift */,
+				F299BE022A2C730A00F7BE20 /* Info.plist */,
+			);
+			path = CalSiri;
+			sourceTree = "<group>";
+		};
 		F29FFCD62A1CD74700F74FF7 = {
 			isa = PBXGroup;
 			children = (
 				F29FFCE12A1CD74700F74FF7 /* AsiadCal */,
 				F29FFCF22A1CD74800F74FF7 /* AsiadCalTests */,
 				F29FFCFC2A1CD74800F74FF7 /* AsiadCalUITests */,
+				F299BDFF2A2C730A00F7BE20 /* CalSiri */,
 				F29FFCE02A1CD74700F74FF7 /* Products */,
 				EA76CD726190C47EAACCE53D /* Pods */,
 				1A4B2A2B74AE68B2675E06E7 /* Frameworks */,
@@ -204,6 +256,7 @@
 				F29FFCDF2A1CD74700F74FF7 /* AsiadCal.app */,
 				F29FFCEF2A1CD74800F74FF7 /* AsiadCalTests.xctest */,
 				F29FFCF92A1CD74800F74FF7 /* AsiadCalUITests.xctest */,
+				F299BDFC2A2C730A00F7BE20 /* CalSiri.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,6 +264,9 @@
 		F29FFCE12A1CD74700F74FF7 /* AsiadCal */ = {
 			isa = PBXGroup;
 			children = (
+				F2A095C92A2B930800509A21 /* Info.plist */,
+				F299BDF62A2C71D200F7BE20 /* Intents.intentdefinition */,
+				F2A095C62A2B8D7900509A21 /* AsiadCal.entitlements */,
 				01E14A6E2A24974C0036F19D /* AsiadEvents */,
 				F29FFCE22A1CD74700F74FF7 /* AsiadCalApp.swift */,
 				F29FFCE42A1CD74700F74FF7 /* ContentView.swift */,
@@ -286,6 +342,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		F299BDFB2A2C730A00F7BE20 /* CalSiri */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F299BE062A2C730A00F7BE20 /* Build configuration list for PBXNativeTarget "CalSiri" */;
+			buildPhases = (
+				F299BDF82A2C730A00F7BE20 /* Sources */,
+				F299BDF92A2C730A00F7BE20 /* Frameworks */,
+				F299BDFA2A2C730A00F7BE20 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalSiri;
+			productName = CalSiri;
+			productReference = F299BDFC2A2C730A00F7BE20 /* CalSiri.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		F29FFCDE2A1CD74700F74FF7 /* AsiadCal */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F29FFD032A1CD74800F74FF7 /* Build configuration list for PBXNativeTarget "AsiadCal" */;
@@ -295,10 +368,12 @@
 				F29FFCDC2A1CD74700F74FF7 /* Frameworks */,
 				F29FFCDD2A1CD74700F74FF7 /* Resources */,
 				CD1803DDF35CF4CD6336C8B4 /* [CP] Embed Pods Frameworks */,
+				F299BE092A2C730A00F7BE20 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F299BE042A2C730A00F7BE20 /* PBXTargetDependency */,
 			);
 			name = AsiadCal;
 			productName = AsiadCal;
@@ -351,6 +426,9 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					F299BDFB2A2C730A00F7BE20 = {
+						CreatedOnToolsVersion = 14.2;
+					};
 					F29FFCDE2A1CD74700F74FF7 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -380,11 +458,19 @@
 				F29FFCDE2A1CD74700F74FF7 /* AsiadCal */,
 				F29FFCEE2A1CD74800F74FF7 /* AsiadCalTests */,
 				F29FFCF82A1CD74800F74FF7 /* AsiadCalUITests */,
+				F299BDFB2A2C730A00F7BE20 /* CalSiri */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F299BDFA2A2C730A00F7BE20 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F29FFCDD2A1CD74700F74FF7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -474,6 +560,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F299BDF82A2C730A00F7BE20 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F299BE0A2A2C734F00F7BE20 /* Intents.intentdefinition in Sources */,
+				F299BE012A2C730A00F7BE20 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F29FFCDB2A1CD74700F74FF7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -490,6 +585,7 @@
 				019A5CE82A24C32900F2F654 /* NvgBar.swift in Sources */,
 				0148DF302A2A4A1F008D3993 /* BackGroundView.swift in Sources */,
 				F2DD73312A244ED1001712C1 /* ProjData.swift in Sources */,
+				F299BDF72A2C71D200F7BE20 /* Intents.intentdefinition in Sources */,
 				F2DD73352A24521D001712C1 /* GlobalData.swift in Sources */,
 				F29FFD0D2A1CD84D00F74FF7 /* CalendarList.swift in Sources */,
 				01DBC4C02A2B296A00E30916 /* ProfilePhotoView.swift in Sources */,
@@ -518,6 +614,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F299BE042A2C730A00F7BE20 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F299BDFB2A2C730A00F7BE20 /* CalSiri */;
+			targetProxy = F299BE032A2C730A00F7BE20 /* PBXContainerItemProxy */;
+		};
 		F29FFCF12A1CD74800F74FF7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F29FFCDE2A1CD74700F74FF7 /* AsiadCal */;
@@ -531,6 +632,54 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		F299BE072A2C730A00F7BE20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CalSiri/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CalSiri;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.AsiadCal.CalSiri";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F299BE082A2C730A00F7BE20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CalSiri/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CalSiri;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.AsiadCal.CalSiri";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		F29FFD012A1CD74800F74FF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -649,13 +798,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3460C89AFE68EAF7FF18B341 /* Pods-AsiadCal.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AsiadCal/AsiadCal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsiadCal/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AsiadCal/Info.plist;
+				INFOPLIST_KEY_NSSiriUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -678,13 +831,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94F9BDAB82CF89C04988B940 /* Pods-AsiadCal.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AsiadCal/AsiadCal.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AsiadCal/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AsiadCal/Info.plist;
+				INFOPLIST_KEY_NSSiriUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -778,6 +935,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F299BE062A2C730A00F7BE20 /* Build configuration list for PBXNativeTarget "CalSiri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F299BE072A2C730A00F7BE20 /* Debug */,
+				F299BE082A2C730A00F7BE20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F29FFCDA2A1CD74700F74FF7 /* Build configuration list for PBXProject "AsiadCal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

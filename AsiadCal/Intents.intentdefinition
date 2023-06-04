@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>INEnums</key>
+	<array/>
+	<key>INIntentDefinitionModelVersion</key>
+	<string>1.2</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>TzBGSn</string>
+	<key>INIntentDefinitionSystemVersion</key>
+	<string>22D68</string>
+	<key>INIntentDefinitionToolsBuildVersion</key>
+	<string>14C18</string>
+	<key>INIntentDefinitionToolsVersion</key>
+	<string>14.2</string>
+	<key>INIntents</key>
+	<array>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>generic</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDefaultImageName</key>
+			<string>userIcon</string>
+			<key>INIntentDescription</key>
+			<string>from calendar get recent events</string>
+			<key>INIntentDescriptionID</key>
+			<string>cWY5Nf</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Getting Recent Events</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>XoepFQ</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>GetRecentEvents</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Getting Recent Events</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>HRjFLp</string>
+				</dict>
+			</dict>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>Recent Events: ${detail}</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>mRYXJa</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Recent Events: ${detail}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>udPP02</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>something wrong</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>oMHo0g</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>something wrong</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>H8PZUJ</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>1</integer>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Detail</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>bibkRA</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>detail</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Get Recent Events</string>
+			<key>INIntentTitleID</key>
+			<string>SDQI7k</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Do</string>
+		</dict>
+	</array>
+	<key>INTypes</key>
+	<array/>
+</dict>
+</plist>
