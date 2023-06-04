@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct recentEventView: View {
+    @Binding var refreshList : Bool
     @State var selectedEvent : AsiadEvent?
     @State var viewDetail : Bool = false
+    
     var body: some View {
         VStack {
             Text("Recent Events")
@@ -69,6 +71,9 @@ struct recentEventView: View {
                 }
                 .onDelete(perform: delete)
                 .listRowBackground(Color(red: 0.96, green: 0.96, blue: 0.96))
+                .onChange(of: refreshList){ _ in
+                    
+                }
             }
             .scrollContentBackground(.hidden)
         }
@@ -86,7 +91,7 @@ struct recentEventView: View {
 struct recentEventView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack{
-            recentEventView(selectedEvent: subscribedAsiadEvents.first)
+            recentEventView(refreshList: .constant(true),selectedEvent: subscribedAsiadEvents.first)
         }
     }
 }

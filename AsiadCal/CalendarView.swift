@@ -349,7 +349,7 @@ func isWeekend(date: Date) -> Bool {
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
         VStack{
-            CalendarView(curView: .constant(.atCalendarView), GlobeBackGroundName: .constant("giphy.gif"))
+            CalendarView(curView: .constant(.atCalendarView), GlobeBackGroundName: .constant("purple.gif"))
         }
     }
     

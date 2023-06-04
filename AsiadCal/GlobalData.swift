@@ -147,7 +147,8 @@ var Event2Color : [SportType : UIColor] = [
     .CanoeSlalom: .red ,
     .DragonBoat : .red ,
     .Swimming   : .red ,
-    .ESport     : .purple
+    .ESport     : .purple,
+    .None       : .gray
 ]
 
 var ThemeColor : [String : UIColor] = [

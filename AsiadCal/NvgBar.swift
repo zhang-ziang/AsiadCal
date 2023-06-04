@@ -15,9 +15,17 @@ struct NvgBar: View {
     @State var addEvent:   Bool = false
     @Binding var curView : NvgState
     @Binding var GlobeBackGroundName : String
+    
+    @State var InputDate: Date = Date.now
+    @State var InputTitle: String = ""
+    @State var InputLocation: String = ""
+    @State var refreshList: Bool = false
     var tap2ExitAddEvent : some Gesture {
         TapGesture(count: 1)
             .onEnded {
+                InputDate = Date.now
+                InputTitle = ""
+                InputLocation = ""
                 withAnimation{
                     addEvent = false
                 }
@@ -43,11 +51,79 @@ struct NvgBar: View {
                             
                             //                                .blendMode(.multiply)
                             RoundedRectangle(cornerRadius: 10)
-                                .frame(width: 350, height: 200)
+                                .frame(width: 350, height: 300)
                                 .foregroundColor(.white)
                                 .blendMode(.multiply)
                             // TODO : Add User event view placed here plz
                             // AddEventView ...
+                            VStack(spacing: 20){
+                                HStack(spacing: 20){
+                                    Text("事件")
+                                        .font(.title2)
+                                        .bold()
+                                        .foregroundColor(.white)
+                                    TextEditor(text: $InputTitle)
+                                        .frame(width: 200, height: 40)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .opacity(0.8)
+                                }
+                                HStack(spacing: 20){
+                                    Text("时间")
+                                        .font(.title2)
+                                        .bold()
+                                        .foregroundColor(.white)
+//                                    TextEditor(text: $InputDate)
+//                                        .frame(width: 200, height: 40)
+//                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+//                                        .opacity(0.8)
+                                    ZStack{
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .frame(width: 200, height: 40)
+                                            .opacity(0.8)
+                                            .foregroundColor(.white)
+                                        DatePicker("",selection: $InputDate)
+                                            .frame(width: 200, height: 40)
+    //                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                            
+                                    }
+                                }
+                                HStack(spacing: 20){
+                                    Text("地点")
+                                        .font(.title2)
+                                        .bold()
+                                        .foregroundColor(.white)
+                                    TextEditor(text: $InputLocation)
+                                        .frame(width: 200, height: 40)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        .opacity(0.8)
+                                }
+                                Button {
+//                                    let dateFormatter = DateFormatter()
+//                                    dateFormatter.dateFormat = "yyyy/MM/dd"
+//                                    dateFormatter.timeZone = TimeZone.current
+//                                    dateFormatter.locale = Locale.current
+//                                    let matchdate = dateFormatter.date(from: InputDate)!
+                                    
+                                    if !RecommandTravelMethod.contains(where: {$0.key == InputLocation}){
+                                        RecommandTravelMethod[InputLocation] = [TravelMtd("figure.walk"), TravelMtd("car.fill")]
+                                    }
+
+                                    AddEvent(EventName: InputTitle, EventDate: InputDate, EventType: .None, EventPos: InputLocation)
+                                    InputDate = Date.now
+                                    InputTitle = ""
+                                    InputLocation = ""
+                                    refreshList.toggle()
+                                    withAnimation{
+                                        addEvent = false
+                                    }
+                                } label: {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .frame(width: 100, height: 60)
+                                        .foregroundColor(.white)
+                                }
+
+                            }.frame(width: 350, height: 300)
+                            
                         }
                         .zIndex(1919.0)
                     }
@@ -63,14 +139,14 @@ struct NvgBar: View {
                                 
                                 ZStack{
                                     RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
-                                        .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
+                                        .frame(width: addEvent ? 350 : 60, height: addEvent ? 300 : 60)
                                         .foregroundColor(.white)
                                     
                                     AnimatedImage(name: GlobeBackGroundName, bundle: Bundle.main, isAnimating: $isAnimated)
                                         .playbackMode(.bounce)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
-                                        .frame(width: addEvent ? 350 : 60, height: addEvent ? 200 : 60)
+                                        .frame(width: addEvent ? 350 : 60, height: addEvent ? 300 : 60)
                                         .opacity(0.6)
                                         .clipShape(
                                             RoundedRectangle(cornerRadius: addEvent ? 10 : 30)
@@ -97,7 +173,7 @@ struct NvgBar: View {
                 
                 
                 if curView == .atIdleView{
-                    recentEventView()
+                    recentEventView(refreshList: $refreshList)
                     //                    .zIndex(0.0)
                         .transition(.move(edge: .top).combined(with: .opacity))
                 }
